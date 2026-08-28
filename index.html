@@ -1376,11 +1376,15 @@
             // 双击图标触发不同操作
             item.addEventListener('dblclick', (e) => {
                 const index = parseInt(item.dataset.index);
-                // 第4个图标（data-index="3"）：打开B站空间
+                // 第4个图标（data-index="3"）：弹出小窗口打开B站空间（右上角）
                 if (index === 3) {
-                    console.log('[整活] 双击第4个图标，打开B站空间');
+                    console.log('[整活] 双击第4个图标，弹出小窗口打开B站空间');
                     iconItems.forEach(i => i.classList.remove('active'));
-                    window.open('https://space.bilibili.com/3461569935575626', '_blank');
+                    const width = 960;
+                    const height = 540;
+                    const left = window.screen.width - width - 200;
+                    const top = 200;
+                    window.open('https://space.bilibili.com/3461569935575626', '_blank', `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no`);
                 }
                 // 第5个图标（data-index="4"）：弹窗功能（保持原有逻辑）
                 else if (index === 4) {
@@ -1454,11 +1458,15 @@
                         spawnMultipleWindows();
                     }, 3000);
                 }
-                // 第6个图标（data-index="5"）：打开视频链接
+                // 第6个图标（data-index="5"）：弹出小窗口打开视频（左下角）
                 else if (index === 5) {
-                    console.log('[整活] 双击第6个图标，打开视频');
+                    console.log('[整活] 双击第6个图标，弹出小窗口打开视频');
                     iconItems.forEach(i => i.classList.remove('active'));
-                    window.open('https://www.bilibili.com/video/BV1juRgBbE2G', '_blank');
+                    const width = 960;
+                    const height = 540;
+                    const left = 200;
+                    const top = window.screen.height - height - 200;
+                    window.open('https://www.bilibili.com/video/BV1juRgBbE2G', '_blank', `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no`);
                 }
             });
         });
