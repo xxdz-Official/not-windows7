@@ -29,7 +29,7 @@
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
 
-        /* 桌面壁纸 */
+        /* 壁纸！桌面颜值担当 */
         .desktop {
             width: 100vw;
             height: 100vh;
@@ -41,7 +41,7 @@
             cursor: default;
         }
 
-        /* ===== 屏幕边缘触发区域（50px透明边框，仅用于逻辑检测） ===== */
+        /* 屏幕边缘50px透明触发区，专门用来整活 */
         .desktop::before {
             content: '';
             position: absolute;
@@ -56,7 +56,7 @@
             transition: border-color 0.2s ease;
         }
 
-        /* 桌面拖拽选择框 - Windows 7 风格 */
+        /* 桌面拖拽框，Win7遗风 */
         .desktop-selection {
             position: absolute;
             border: 1px solid rgba(0, 120, 215, 0.8);
@@ -66,7 +66,7 @@
             display: none;
         }
 
-        /* 桌面左上角图标容器 - 精灵图 */
+        /* 左上角图标们，用精灵图凑的 */
         .desktop-icon {
             position: absolute;
             left: 0px;
@@ -75,7 +75,7 @@
             z-index: 1;
         }
 
-        /* 每个图标项 */
+        /* 单个图标项 */
         .desktop-icon-item {
             width: 115px;
             height: 127px;
@@ -88,7 +88,7 @@
             transition: width 0.15s ease-out, height 0.15s ease-out, margin-bottom 0.15s ease-out;
         }
 
-        /* 图标图片层 - 精灵图 */
+        /* 精灵图本体 */
         .icon-image {
             position: absolute;
             top: 0;
@@ -103,7 +103,7 @@
             transition: background-size 0.15s ease-out;
         }
 
-        /* 图标高亮层 - 在图标下方（作为背景层） */
+        /* 高亮层，藏在图标底下当背景 */
         .icon-highlight {
             position: absolute;
             top: 50%;
@@ -121,21 +121,21 @@
             z-index: 0;
         }
 
-        /* 鼠标悬浮时显示高亮1（浅色高亮） */
+        /* hover时亮高亮1 */
         .desktop-icon-item:hover .icon-highlight {
             background-image: url('img/高亮1xxdzDM_alpha.png');
             background-size: 135px 141px;
             opacity: 1;
         }
 
-        /* 鼠标点击时显示高亮2（深色高亮，通过JS添加类） */
+        /* 点击时亮高亮2，JS加类控制 */
         .desktop-icon-item.active .icon-highlight {
             background-image: url('img/高亮2xxdzDM_alpha.png');
             background-size: 135px 141px;
             opacity: 1;
         }
 
-        /* 每个图标项的精灵图位置 - 中等图标（默认） */
+        /* 精灵图位置，默认中号 */
         .desktop-icon-item:nth-child(1) .icon-image { background-position: 0 0; }
         .desktop-icon-item:nth-child(2) .icon-image { background-position: 0 -127px; }
         .desktop-icon-item:nth-child(3) .icon-image { background-position: 0 -254px; }
@@ -143,7 +143,7 @@
         .desktop-icon-item:nth-child(5) .icon-image { background-position: 0 -508px; }
         .desktop-icon-item:nth-child(6) .icon-image { background-position: 0 -635px; }
 
-        /* 6个图标依次出现，每个延迟递增 */
+        /* 6个图标依次登场，各带延迟 */
         .desktop-icon-item:nth-child(1) { animation-delay: 0.3s; }
         .desktop-icon-item:nth-child(2) { animation-delay: 0.45s; }
         .desktop-icon-item:nth-child(3) { animation-delay: 0.6s; }
@@ -162,7 +162,7 @@
             }
         }
 
-        /* 窗口模糊背景层 - 在窗口下方（初始隐藏） */
+        /* 窗口模糊背景层，默认隐身 */
         .window-blur {
             position: absolute;
             left: 50%;
@@ -186,7 +186,7 @@
             animation: win7OpenBlur 0.2s ease-out forwards;
         }
 
-        /* Windows 7 窗口打开动画 - 模糊层同步 */
+        /* Win7风格模糊层打开动画 */
         @keyframes win7OpenBlur {
             0% {
                 transform: scale(0.9) perspective(800px) rotateX(-12deg);
@@ -198,7 +198,7 @@
             }
         }
 
-        /* 窗口 - 使用图片作为窗口（初始隐藏，由JS控制显示） */
+        /* 窗口本体，用图片模拟的 */
         .window {
             position: absolute;
             left: 50%;
@@ -219,7 +219,7 @@
             display: none;
         }
 
-        /* 关闭按钮 - 覆盖在窗口右上角 */
+        /* 右上角关闭按钮 */
         .window-close-btn {
             position: absolute;
             right: 19px;
@@ -239,7 +239,7 @@
             pointer-events: auto;
         }
 
-        /* 窗口关闭时，关闭按钮渐隐 */
+        /* 关闭时按钮渐隐 */
         .window.closing .window-close-btn {
             opacity: 0 !important;
             transition: opacity 0.15s ease-in;
@@ -255,13 +255,13 @@
             transition: background 0.05s ease;
         }
 
-        /* 窗口显示时的动画 */
+        /* 窗口显示动画 */
         .window.show {
             display: block;
             animation: win7Open 0.2s ease-out forwards;
         }
 
-        /* Windows 7 窗口打开动画 - 3D效果 */
+        /* Win7 3D打开效果 */
         @keyframes win7Open {
             0% {
                 transform: scale(0.9) perspective(800px) rotateX(-12deg);
@@ -273,7 +273,7 @@
             }
         }
 
-        /* Windows 7 窗口关闭动画 - 反向效果 */
+        /* Win7 关闭动画，反向3D */
         @keyframes win7Close {
             0% {
                 transform: scale(1) perspective(800px) rotateX(0deg);
@@ -285,7 +285,7 @@
             }
         }
 
-        /* Windows 7 窗口关闭动画 - 模糊层同步 */
+        /* 模糊层关闭同步 */
         @keyframes win7CloseBlur {
             0% {
                 transform: scale(1) perspective(800px) rotateX(0deg);
@@ -297,7 +297,7 @@
             }
         }
 
-        /* Windows 7 窗口关闭动画 - 标题栏同步 */
+        /* 标题栏关闭同步 */
         @keyframes win7CloseTitle {
             0% {
                 transform: scale(1) perspective(800px) rotateX(0deg);
@@ -325,14 +325,14 @@
             background-image: url('img/未知错误 0x80070005_b2.png');
         }
 
-        /* 窗口失焦时，模糊层模糊程度降低 */
+        /* 失焦时模糊层变淡 */
         .window.inactive + .window-blur,
         .window.inactive ~ .window-blur {
             backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(3px);
         }
 
-        /* 标题栏 - 只有标题栏区域可拖动（初始隐藏） */
+        /* 标题栏，只有它能拖 */
         .window-titlebar {
             position: absolute;
             left: 18px;
@@ -396,7 +396,6 @@
             pointer-events: auto;
         }
 
-        /* 开始按钮内部所有元素都是默认光标 */
         .start-btn * {
             cursor: default;
         }
@@ -409,7 +408,7 @@
             cursor: default;
         }
 
-        /* 开始按钮精灵图 - 三层交叉淡入淡出，始终100%不透明 */
+        /* 开始按钮精灵图，三层交叉淡入淡出 */
         .start-btn-sprite {
             position: absolute;
             top: 50%;
@@ -486,7 +485,7 @@
             opacity: 1;
         }
 
-        /* 开始按钮菜单打开状态 - 强制显示第三个状态 */
+        /* 菜单打开时按钮状态强制锁定 */
         .start-btn.menu-open .start-btn-sprite-default {
             opacity: 0;
         }
@@ -499,7 +498,7 @@
             opacity: 1;
         }
 
-        /* 任务栏中间区域 - 拉伸图片 */
+        /* 任务栏中间拉伸区域 */
         .taskbar-middle {
             flex: 1;
             height: 100%;
@@ -517,7 +516,7 @@
             display: block;
         }
 
-        /* 任务栏标签 - Windows 7 风格（初始隐藏） */
+        /* 任务栏标签，Win7样式，初始隐身 */
         .taskbar-tab {
             position: absolute;
             left: 3px;
@@ -535,7 +534,7 @@
             display: block;
         }
 
-        /* 高光遮罩层 - 跟随鼠标 */
+        /* 高光遮罩，鼠标跟着跑 */
         .tab-glow-mask {
             position: absolute;
             top: 0;
@@ -554,17 +553,17 @@
             opacity: 1;
         }
 
-        /* 任务栏标签显示状态 - 进入动画 */
+        /* 标签出现动画 */
         .taskbar-tab.show {
             animation: tabOpen 0.15s ease-out forwards;
         }
 
-        /* 任务栏标签隐藏状态 - 关闭动画 */
+        /* 标签消失动画 */
         .taskbar-tab.closing {
             animation: tabClose 0.15s ease-in forwards;
         }
 
-        /* 任务栏标签进入动画 - 锚点在左，向右拉伸 */
+        /* 从左向右展开 */
         @keyframes tabOpen {
             0% {
                 width: 0;
@@ -576,7 +575,7 @@
             }
         }
 
-        /* 任务栏标签关闭动画 - 向右收缩 */
+        /* 从右向左收拢 */
         @keyframes tabClose {
             0% {
                 width: 160px;
@@ -588,7 +587,7 @@
             }
         }
 
-        /* 托盘区域 */
+        /* 系统托盘 */
         .tray {
             height: 100%;
             display: flex;
@@ -603,7 +602,7 @@
             display: block;
         }
 
-        /* 拖拽调整窗口大小 */
+        /* 窗口右下角调整柄，暂时没用上 */
         .window-resize-handle {
             position: absolute;
             bottom: 0;
@@ -615,7 +614,7 @@
             border-radius: 0 0 4px 0;
         }
 
-        /* 响应式 - 只调整任务栏，窗口保持固定尺寸 */
+        /* 手机端适配，只动任务栏 */
         @media (max-width: 640px) {
             .taskbar {
                 height: 40px;
@@ -638,7 +637,7 @@
             }
         }
 
-        /* ===== 右键菜单 ===== */
+        /* 右键菜单，Win7遗风 */
         .context-menu {
             position: fixed;
             min-width: 190px;
@@ -683,7 +682,7 @@
             line-height: 1.3;
         }
 
-        /* 鼠标悬浮高亮 - 复刻 Win7 样式 */
+        /* hover高亮，复刻Win7 */
         .context-menu-item {
             transition: background 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
             will-change: background, border-color;
@@ -841,9 +840,9 @@
 </head>
 <body>
     <div class="desktop" id="desktop">
-        <!-- 拖拽选择框 -->
+        <!-- 拖拽框，用来选区的 -->
         <div class="desktop-selection" id="desktopSelection"></div>
-        <!-- 桌面左上角图标 - 精灵图6个图标依次出现 -->
+        <!-- 桌面左上角6个图标，精灵图依次登场 -->
         <div class="desktop-icon">
             <div class="desktop-icon-item" data-index="0">
                 <div class="icon-highlight"></div>
@@ -871,19 +870,19 @@
             </div>
         </div>
 
-        <!-- 预加载失焦图片，避免切换时闪烁 -->
+        <!-- 预载失焦图，切图不闪 -->
         <img src="img/未知错误 0x80070005_b2.png" style="display:none;" aria-hidden="true">
 
-        <!-- Windows 窗口模糊背景层 -->
+        <!-- 窗口模糊背景层 -->
         <div class="window-blur" id="windowBlur" style="pointer-events:none;"></div>
 
-        <!-- Windows 窗口 -->
+        <!-- 主窗口 -->
         <div class="window" id="mainWindow" style="pointer-events:auto;">
-            <!-- 标题栏 - 只有标题栏可以拖动 -->
+            <!-- 标题栏，只有它能拖 -->
             <div class="window-titlebar active" id="titlebar"></div>
             <!-- 关闭按钮 -->
             <div class="window-close-btn" id="windowCloseBtn" title="关闭"></div>
-            <!-- 窗口图片由CSS背景显示 -->
+            <!-- 窗口图片由CSS搞定 -->
         </div>
 
         <!-- 任务栏 -->
@@ -896,10 +895,10 @@
                 <div class="start-btn-sprite start-btn-sprite-active"></div>
             </button>
 
-            <!-- 中间拉伸区域 -->
+            <!-- 中间拉伸区 -->
             <div class="taskbar-middle">
                 <img src="img/中间.png" alt="任务栏背景">
-                <!-- 任务栏标签 -->
+                <!-- 主任务栏标签 -->
                 <div class="taskbar-tab" id="taskbarTab" onclick="focusWindow()">
                     <img src="img/任务xxdzDM_alpha1.png" alt="任务标签" id="tabImage">
                     <div class="tab-glow-mask" id="tabGlowMask"></div>
@@ -997,8 +996,8 @@
     </div>
 
     <script>
-        // ============ 窗口拖动功能 ============
-        // 使用函数获取最新窗口元素，而不是固定引用
+        // ===== 窗口拖拽，可以甩着玩 =====
+        // 动态获取窗口元素，不用固定引用
         function getWindowEl() {
             return document.getElementById('mainWindow');
         }
@@ -1010,9 +1009,9 @@
         let dragOffsetY = 0;
         let edgeTriggered = false;
 
-        console.log('[DEBUG] 窗口拖动功能已初始化');
+        console.log('[屑] 拖拽模块加载完毕');
 
-        // ============ 任务栏进入动画 ============
+        // ===== 任务栏从底下蹦上来 =====
         (function initTaskbarAnimation() {
             const tb = document.querySelector('.taskbar');
             if (tb) {
@@ -1024,7 +1023,7 @@
             }
         })();
 
-        // ============ 播放开机音效（使用Audio元素） ============
+        // ===== 开机音效，爷青回 =====
         let bootSoundPlayed = false;
 
         function playBootSound() {
@@ -1035,51 +1034,44 @@
                 const audio = document.createElement('audio');
                 audio.src = 'img/Windows7开机.wav';
                 audio.volume = 0.5;
-                audio.play().catch(e => console.log('[DEBUG] 开机音效播放失败:', e));
-                console.log('[DEBUG] 开机音效已触发');
+                audio.play().catch(e => console.log('[屑] 音效播放失败:', e));
+                console.log('[音效] 开机音效已播放');
             } catch(e) {
-                console.log('[DEBUG] 开机音效初始化失败:', e);
+                console.log('[屑] 音效初始化失败:', e);
             }
         }
 
-        // 用户点击页面时触发（只触发一次）
+        // 点击/触摸触发，只一次
         document.addEventListener('click', function() {
             playBootSound();
         }, { once: true });
 
-        // 触摸设备首次触摸时触发
         document.addEventListener('touchstart', function() {
             playBootSound();
         }, { once: true });
 
-        // 标题栏拖拽事件使用动态绑定，在reset时重新绑定
+        // 标题栏拖拽，重置时重新绑
         function bindTitlebarDrag() {
             const titlebar = getTitlebar();
             if (!titlebar) return;
-            // 移除旧监听器（通过克隆替换方式，或使用新监听器）
-            // 直接添加新监听器，但为了避免重复，先移除所有监听器
+            // 克隆换旧，保证监听干净
             const newTitlebar = titlebar.cloneNode(true);
             titlebar.parentNode.replaceChild(newTitlebar, titlebar);
-            // 更新ID
             newTitlebar.id = 'titlebar';
 
             newTitlebar.addEventListener('mousedown', (e) => {
                 const windowEl = getWindowEl();
                 if (!windowEl) return;
-                console.log('[DEBUG] mousedown 标题栏');
+                console.log('[拖拽] mousedown 标题栏');
                 e.preventDefault();
                 e.stopPropagation();
-                // 记录当前正在拖拽的窗口（主窗口）
                 currentlyDraggingWindow = windowEl;
-                // 激活窗口
                 windowEl.classList.remove('inactive');
-                // 恢复模糊层模糊程度
                 const blurEl = document.getElementById('windowBlur');
                 if (blurEl) {
                     blurEl.style.backdropFilter = 'blur(10px)';
                     blurEl.style.webkitBackdropFilter = 'blur(10px)';
                 }
-                // 切换任务栏标签为激活状态
                 const tabImage = document.getElementById('tabImage');
                 if (tabImage) {
                     tabImage.src = 'img/任务xxdzDM_alpha1.png';
@@ -1092,22 +1084,21 @@
                 windowEl.style.cursor = 'grabbing';
                 document.addEventListener('mousemove', onDrag);
                 document.addEventListener('mouseup', stopDrag);
-                console.log('[DEBUG] isDragging = true, edgeTriggered = false, 当前拖拽窗口: mainWindow');
+                console.log('[拖拽] isDragging=true, 当前拖主窗口');
             });
             return newTitlebar;
         }
-        // 初始绑定
         bindTitlebarDrag();
 
         function onDrag(e) {
-            console.log('[DEBUG] onDrag 触发, isDragging =', isDragging);
+            console.log('[拖拽] onDrag 触发, isDragging =', isDragging);
             if (!isDragging) {
-                console.log('[DEBUG] onDrag 跳过, isDragging = false');
+                console.log('[拖拽] 跳过, isDragging=false');
                 return;
             }
             const windowEl = getWindowEl();
             if (!windowEl) {
-                console.log('[DEBUG] onDrag 跳过, windowEl 不存在');
+                console.log('[拖拽] 跳过, windowEl 不存在');
                 return;
             }
             const desktop = document.getElementById('desktop');
@@ -1116,13 +1107,11 @@
             let y = e.clientY - desktopRect.top - dragOffsetY;
             windowEl.style.left = x + 'px';
             windowEl.style.top = y + 'px';
-            // 模糊层跟随窗口（偏移量：左+12px，上+10px）
             const blurEl = document.getElementById('windowBlur');
             if (blurEl) {
                 blurEl.style.left = (x + 12) + 'px';
                 blurEl.style.top = (y + 11) + 'px';
             }
-            // 清除居中的margin
             windowEl.style.marginLeft = '0px';
             windowEl.style.marginTop = '0px';
             if (blurEl) {
@@ -1130,143 +1119,121 @@
                 blurEl.style.marginTop = '0px';
             }
 
-            // ===== 检测鼠标位置是否进入屏幕边缘触发区域（距离边缘50px） =====
-            const EDGE_THRESHOLD = 50; // 边缘触发阈值
+            // 检测鼠标是否进入边缘50px区域
+            const EDGE_THRESHOLD = 50;
             const mouseX = e.clientX;
             const mouseY = e.clientY;
-
-            // 判断鼠标是否进入屏幕边缘区域
             const isMouseAtEdge = (mouseX < EDGE_THRESHOLD ||
                                    mouseX > window.innerWidth - EDGE_THRESHOLD ||
                                    mouseY < EDGE_THRESHOLD ||
                                    mouseY > window.innerHeight - EDGE_THRESHOLD);
 
-            // 判断窗口是否完全移出屏幕（整个窗口都在屏幕外）
             const winRect = windowEl.getBoundingClientRect();
             const isFullyOut = (winRect.right < 0 || winRect.left > window.innerWidth ||
                                winRect.bottom < 0 || winRect.top > window.innerHeight);
 
-            console.log('[DEBUG] 鼠标位置: (' + mouseX + ', ' + mouseY + ')');
-            console.log('[DEBUG] isMouseAtEdge =', isMouseAtEdge, 'isFullyOut =', isFullyOut, 'edgeTriggered =', edgeTriggered);
+            console.log('[拖拽] 鼠标位置: (' + mouseX + ', ' + mouseY + ')');
+            console.log('[拖拽] isMouseAtEdge=' + isMouseAtEdge + ', isFullyOut=' + isFullyOut + ', edgeTriggered=' + edgeTriggered);
 
-            // ===== 场景1：鼠标进入边缘区域 → 仅触发系统窗口，不销毁 =====
+            // 场景1：进入边缘，触发系统窗口但不销毁
             if (isMouseAtEdge && !edgeTriggered) {
-                console.log('[DEBUG] 🟡 鼠标进入边缘区域！触发系统窗口（不销毁当前窗口）');
+                console.log('[整活] 鼠标进入边缘！触发系统窗口（不销毁当前）');
                 edgeTriggered = true;
-                // 仅触发后端创建系统窗口，不销毁当前窗口
                 triggerSpawnWindow(e.clientX, e.clientY, 'edge');
-                // 重置 edgeTriggered，允许再次触发（但用防抖避免频繁触发）
                 setTimeout(() => {
                     edgeTriggered = false;
                 }, 500);
             }
 
-            // ===== 场景2：窗口完全移出屏幕 → 销毁窗口 + 触发系统窗口 =====
+            // 场景2：窗口完全出屏，销毁+触发系统窗口
             if (isFullyOut && !edgeTriggered) {
-                console.log('[DEBUG] 🟢 窗口已完全移出屏幕！销毁该窗口及其模糊层');
+                console.log('[整活] 窗口完全出屏！销毁该窗口及其模糊层');
                 edgeTriggered = true;
 
-                // 立即获取模糊层引用（在销毁前）
                 const blurElToRemove = document.getElementById('windowBlur');
-
-                // 立即停止拖拽（即使鼠标未抬起）
                 stopDrag();
 
-                // 立即从DOM中移除主窗口
                 if (windowEl.parentNode) {
                     windowEl.parentNode.removeChild(windowEl);
                 }
-                // 立即从DOM中移除模糊层
                 if (blurElToRemove && blurElToRemove.parentNode) {
                     blurElToRemove.parentNode.removeChild(blurElToRemove);
                 }
-                // 隐藏任务栏标签（主标签）
                 const mainTab = document.getElementById('taskbarTab');
                 if (mainTab) {
                     mainTab.style.display = 'none';
                     mainTab.classList.remove('show');
                 }
-                console.log('[DEBUG] 🗑️ 主窗口及其模糊层已立即销毁');
+                console.log('[整活] 主窗口已销毁');
 
-                // 延迟触发其他窗口物理掉落
                 setTimeout(() => {
-                    console.log('[DEBUG] ⏰ 当前窗口已销毁，触发其他窗口掉落');
+                    console.log('[物理] 当前窗口已销毁，触发其他窗口掉落');
                     dropAllWindows();
                 }, 300);
-                // 同时尝试通知后端（不影响物理效果）
                 triggerSpawnWindow(e.clientX, e.clientY, 'edge');
             }
         }
 
         function stopDrag() {
-            console.log('[DEBUG] stopDrag 触发');
+            console.log('[拖拽] stopDrag 触发');
             isDragging = false;
             edgeTriggered = false;
-            currentlyDraggingWindow = null; // 清除拖拽标记
+            currentlyDraggingWindow = null;
             const windowEl = getWindowEl();
             if (windowEl) {
                 windowEl.style.cursor = '';
             }
             document.removeEventListener('mousemove', onDrag);
             document.removeEventListener('mouseup', stopDrag);
-            console.log('[DEBUG] isDragging = false, edgeTriggered = false, 拖拽窗口已清除');
+            console.log('[拖拽] isDragging=false, 拖拽已清除');
         }
 
-        // 窗口尺寸变化时同步模糊层（偏移量固定：左+12px，上+10px）
+        // 窗口尺寸变化时同步模糊层
         function syncBlurPosition() {
             const blurEl = document.getElementById('windowBlur');
             const windowEl = getWindowEl();
             if (blurEl && windowEl) {
-                // 获取窗口当前的实际位置
                 const rect = windowEl.getBoundingClientRect();
                 const desktopRect = document.getElementById('desktop').getBoundingClientRect();
                 const leftVal = rect.left - desktopRect.left;
                 const topVal = rect.top - desktopRect.top;
-                // 模糊层相对窗口偏移：left+12px，top+10px
                 blurEl.style.left = (leftVal + 12) + 'px';
                 blurEl.style.top = (topVal + 11) + 'px';
-                // 清除居中margin
                 blurEl.style.marginLeft = '0px';
                 blurEl.style.marginTop = '0px';
             }
         }
 
-        // 在窗口显示后同步位置
         function syncBlurPositionDelayed() {
             setTimeout(syncBlurPosition, 50);
         }
 
-        // 修改 showWindow 函数，显示后同步模糊层位置
+        // 改写 showWindow，显示后同步模糊层
         const originalShowWindow = showWindow;
         showWindow = function() {
             originalShowWindow();
             syncBlurPositionDelayed();
         };
 
-        // ============ 窗口通信功能 ============
+        // ===== 与后端通信，暂时没用上 =====
         const BACKEND_URL = 'http://127.0.0.1:5000/api/message';
         let lastMessage = '你好后端';
 
-        // ============ 监听窗口尺寸变化，实时重排任务栏标签 ============
+        // ===== 监听窗口尺寸变化，重排任务栏标签 =====
         window.addEventListener('resize', function() {
-            // 防抖：延迟执行，避免频繁重排
             clearTimeout(window._resizeTimer);
             window._resizeTimer = setTimeout(function() {
                 rearrangeTaskbarTabs();
-                console.log('[DEBUG] 📐 窗口尺寸变化，已重排任务栏标签');
+                console.log('[排版] 窗口尺寸变了，任务栏标签已重排');
             }, 100);
         });
-
-        // 调试信息已替换为盗版提示文本（静态），不再动态更新
 
         async function sendMessage(text) {
             if (!text.trim()) {
                 updateDebugInfo(' 请输入内容');
                 return;
             }
-
             updateDebugInfo(' 发送中: ' + text.trim());
-
             try {
                 const response = await fetch(BACKEND_URL, {
                     method: 'POST',
@@ -1275,60 +1242,49 @@
                     },
                     body: JSON.stringify({ message: text.trim() }),
                 });
-
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
                 const data = await response.json();
                 updateDebugInfo(' ' + (data.reply || '收到回复'));
             } catch (error) {
-                console.error('请求失败:', error);
+                console.error('[屑] 请求失败:', error);
                 updateDebugInfo(' 连接失败，请确保后端已启动');
             }
         }
 
-        // 按回车键发送（用于演示，但窗口已无输入框，保留功能以备后续）
+        // Ctrl+Enter 发消息，备用
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.ctrlKey) {
                 sendMessage(lastMessage);
             }
         });
 
-
-
-        // ============ 点击窗口激活/失焦 ============
+        // ===== 窗口激活/失焦 =====
         const tabImage = document.getElementById('tabImage');
 
-        // 窗口获得焦点（点击窗口本身或标题栏）使用动态绑定
         function bindWindowClick() {
             const windowEl = getWindowEl();
             if (!windowEl) return;
-            // 移除旧监听器
             const newWindow = windowEl.cloneNode(true);
             windowEl.parentNode.replaceChild(newWindow, windowEl);
-            // 重新获取引用并绑定
             const newWindowEl = getWindowEl();
             if (!newWindowEl) return;
 
             newWindowEl.addEventListener('mousedown', (e) => {
-                // 如果点击的是关闭按钮，不处理
                 if (e.target.closest('.window-close-btn')) {
                     return;
                 }
                 newWindowEl.classList.remove('inactive');
-                // 恢复模糊层模糊程度
                 const blurEl = document.getElementById('windowBlur');
                 if (blurEl) {
                     blurEl.style.backdropFilter = 'blur(10px)';
                     blurEl.style.webkitBackdropFilter = 'blur(10px)';
                 }
-                // 切换任务栏标签为激活状态
                 const tabImage = document.getElementById('tabImage');
                 if (tabImage) {
                     tabImage.src = 'img/任务xxdzDM_alpha1.png';
                 }
-                // 置顶窗口
                 windowCounter++;
                 newWindowEl.style.zIndex = 9999 + windowCounter;
                 if (blurEl) {
@@ -1336,22 +1292,19 @@
                 }
             });
         }
-        // 初始绑定
         bindWindowClick();
 
-        // 点击桌面其他地方让窗口失去焦点
+        // 点击桌面其他地方让窗口失焦
         document.getElementById('desktop').addEventListener('mousedown', (e) => {
             const windowEl = getWindowEl();
             if (!windowEl) return;
             if (!windowEl.contains(e.target)) {
                 windowEl.classList.add('inactive');
-                // 降低模糊层模糊程度
                 const blurEl = document.getElementById('windowBlur');
                 if (blurEl) {
                     blurEl.style.backdropFilter = 'blur(3px)';
                     blurEl.style.webkitBackdropFilter = 'blur(3px)';
                 }
-                // 切换任务栏标签为失焦状态
                 const tabImage = document.getElementById('tabImage');
                 if (tabImage) {
                     tabImage.src = 'img/任务xxdzDM_alpha2.png';
@@ -1359,47 +1312,39 @@
             }
         });
 
-        // ============ 聚焦窗口函数（点击任务栏标签时调用） ============
+        // ===== 聚焦窗口，点击任务栏标签调用 =====
         function focusWindow() {
             const windowEl = getWindowEl();
             if (!windowEl) return;
             const tabImage = document.getElementById('tabImage');
-            // 如果窗口未显示，先显示窗口
             if (!windowEl.classList.contains('show')) {
                 showWindow();
             } else {
-                // 如果已显示，只激活窗口
                 windowEl.classList.remove('inactive');
-                // 恢复模糊层模糊程度
                 const blurEl = document.getElementById('windowBlur');
                 if (blurEl) {
                     blurEl.style.backdropFilter = 'blur(10px)';
                     blurEl.style.webkitBackdropFilter = 'blur(10px)';
-                    // 置顶主窗口的模糊层
                     windowCounter++;
                     blurEl.style.zIndex = 9998 + windowCounter;
                 }
-                // 切换任务栏标签为激活状态
                 if (tabImage) {
                     tabImage.src = 'img/任务xxdzDM_alpha1.png';
                 }
-                // 将窗口置于顶层
                 windowCounter++;
                 windowEl.style.zIndex = 9999 + windowCounter;
-                // 同时更新所有其他标签的状态为失焦
                 document.querySelectorAll('.taskbar-tab img').forEach(img => {
                     if (img.id !== 'tabImage') {
                         img.src = 'img/任务xxdzDM_alpha2.png';
                     }
                 });
-                // 确保主标签是激活状态
                 if (tabImage) {
                     tabImage.src = 'img/任务xxdzDM_alpha1.png';
                 }
             }
         }
 
-        // ============ 任务栏标签高光跟随鼠标 ============
+        // ===== 任务栏标签高光跟随鼠标 =====
         const taskbarTab = document.getElementById('taskbarTab');
         const tabGlowMask = document.getElementById('tabGlowMask');
 
@@ -1410,41 +1355,31 @@
                 const y = ((e.clientY - rect.top) / rect.height) * 100;
                 tabGlowMask.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%)`;
             });
-
-            // 鼠标移出时保持最后位置，不重置到中心
         }
 
-        // ============ 图标点击交互 ============
+        // ===== 桌面图标交互 =====
         const iconItems = document.querySelectorAll('.desktop-icon-item');
 
         iconItems.forEach(item => {
-            // 鼠标按下时添加active类（显示高亮2）
             item.addEventListener('mousedown', (e) => {
-                // 移除其他图标的active状态
                 iconItems.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-                console.log(` 点击了图标 ${item.dataset.index}`);
+                console.log('[图标] 点击了图标 ' + item.dataset.index);
             });
 
-            // 鼠标松开时移除active类（恢复高亮1）
             item.addEventListener('mouseup', () => {
-                // 保持active状态，点击其他地方才取消
+                // 保持active，点其他地方取消
             });
 
-            // 鼠标离开时如果还是active状态，保持（但点击其他地方会取消）
-
-            // 双击事件 - 倒数第二个图标（data-index="4"）触发弹窗
+            // 双击倒数第二个图标触发弹窗
             item.addEventListener('dblclick', (e) => {
                 const index = parseInt(item.dataset.index);
-                if (index === 4) { // 倒数第二个图标的索引是4
-                    console.log('[DEBUG]  双击了倒数第二个图标，触发弹窗');
-                    // 移除所有图标的active状态（隐藏高亮2）
+                if (index === 4) {
+                    console.log('[整活] 双击倒数第二个图标，弹窗启动');
                     iconItems.forEach(i => i.classList.remove('active'));
-                    // 显示网页窗口
                     showWindow();
-                    // 不再在双击时触发系统弹窗，只有在拖出边缘时才触发
 
-                    // ===== 2秒后让主窗口丝滑移动到顶部200px位置（仅第一次执行） =====
+                    // 首次双击后2秒把主窗口挪到顶部200px
                     if (!firstMoveDone) {
                         setTimeout(() => {
                             const mainWin = document.getElementById('mainWindow');
@@ -1454,14 +1389,11 @@
                             const currentTop = winRect.top - desktopRect.top;
                             const currentLeft = winRect.left - desktopRect.left;
 
-                            // 如果当前顶部位置 > 200px，则移动
                             if (currentTop > 200) {
-                                console.log('[DEBUG] 🚀 主窗口移动到顶部200px (首次，当前:' + currentTop + 'px, left:' + currentLeft + 'px)');
+                                console.log('[动画] 主窗口移动到顶部200px (首次，当前:' + currentTop + 'px)');
 
-                                // 重要：先设置 margin 为 0，用 left/top 控制位置
                                 mainWin.style.marginLeft = '0px';
                                 mainWin.style.marginTop = '0px';
-                                // 先设置当前位置为当前实际位置，防止闪烁
                                 mainWin.style.left = currentLeft + 'px';
                                 mainWin.style.top = currentTop + 'px';
 
@@ -1472,29 +1404,23 @@
                                     blurEl.style.top = (currentTop + 11) + 'px';
                                 }
 
-                                // 强制回流，确保样式已应用
                                 void mainWin.offsetWidth;
 
                                 const targetTop = 200;
                                 const targetLeft = currentLeft;
-
-                                // 为窗口和模糊层添加过渡动画
                                 const transitionStyle = 'top 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
                                 mainWin.style.transition = transitionStyle;
                                 mainWin.style.top = targetTop + 'px';
                                 mainWin.style.left = targetLeft + 'px';
 
-                                // 模糊层跟随窗口（偏移量：left+12px，top+11px）
                                 if (blurEl) {
                                     blurEl.style.transition = transitionStyle;
                                     blurEl.style.top = (targetTop + 11) + 'px';
                                     blurEl.style.left = (targetLeft + 12) + 'px';
                                 }
 
-                                // 标记已执行过移动
                                 firstMoveDone = true;
 
-                                // 动画结束后清除过渡，避免影响后续拖拽
                                 setTimeout(() => {
                                     mainWin.style.transition = '';
                                     mainWin.style.left = targetLeft + 'px';
@@ -1506,16 +1432,15 @@
                                     }
                                 }, 700);
                             } else {
-                                console.log('[DEBUG] ⏭️ 主窗口已在200px以内 (当前:' + currentTop + 'px)，不移动');
-                                // 即使不移动，也标记为已执行
+                                console.log('[动画] 主窗口已在200px以内，不移动');
                                 firstMoveDone = true;
                             }
                         }, 2000);
                     } else {
-                        console.log('[DEBUG] ⏭️ 首次移动已执行过，跳过');
+                        console.log('[动画] 首次移动已执行，跳过');
                     }
 
-                    // 3秒后弹出10个窗口
+                    // 3秒后批量生成10个窗口
                     setTimeout(() => {
                         spawnMultipleWindows();
                     }, 3000);
@@ -1523,45 +1448,42 @@
             });
         });
 
-        // 点击桌面其他地方取消所有图标的active状态
+        // 点击桌面取消图标高亮
         document.getElementById('desktop').addEventListener('mousedown', (e) => {
             if (!e.target.closest('.desktop-icon-item')) {
                 iconItems.forEach(i => i.classList.remove('active'));
             }
         });
 
-        // ============ 刷新桌面图标 ============
+        // ===== 刷新桌面图标 =====
         function refreshDesktopIcons() {
             const iconItems = document.querySelectorAll('.desktop-icon-item');
             iconItems.forEach((item, index) => {
-                // 移除动画
                 item.style.animation = 'none';
-                // 强制回流
                 void item.offsetWidth;
-                // 重新添加动画，保留原有延迟
                 const delay = 0.3 + index * 0.15;
                 item.style.animation = `iconAppear 0.15s ease-out ${delay}s forwards`;
             });
-            console.log('[DEBUG]  桌面图标已刷新');
+            console.log('[刷新] 桌面图标已刷新');
         }
 
-        // ============ 显示/隐藏桌面图标 ============
+        // ===== 显示/隐藏桌面图标 =====
         function toggleDesktopIcons(show) {
             const iconContainer = document.querySelector('.desktop-icon');
             if (iconContainer) {
                 iconContainer.style.display = show ? '' : 'none';
-                console.log('[DEBUG] 桌面图标已' + (show ? '显示' : '隐藏'));
+                console.log('[图标] 桌面图标已' + (show ? '显示' : '隐藏'));
             }
         }
 
-         // ============ 窗口计数器 ============
+        // ===== 窗口计数器 =====
         let windowCounter = 0;
-        // ============ 窗口重置状态标志 ============
+        // ===== 重置状态标志 =====
         let isWindowResetPending = false;
-        // ============ 是否已执行过首次移动 ============
+        // ===== 首次移动标记 =====
         let firstMoveDone = false;
 
-        // ============ 设置图标大小 ============
+        // ===== 设置图标大小 =====
         function setIconSize(size) {
             const iconItems = document.querySelectorAll('.desktop-icon-item');
             let width, height, marginBottom, bgWidth, highlightWidth, highlightHeight, highlightOffsetX, highlightOffsetY;
@@ -1605,19 +1527,16 @@
             }
 
             iconItems.forEach((item, index) => {
-                // 设置图标大小
                 item.style.width = width + 'px';
                 item.style.height = height + 'px';
                 item.style.marginBottom = marginBottom + 'px';
 
-                // 设置精灵图背景大小和位置
                 const img = item.querySelector('.icon-image');
                 if (img) {
                     img.style.backgroundSize = bgWidth + 'px ' + (height * 6) + 'px';
                     img.style.backgroundPosition = '0 ' + positions[index] + 'px';
                 }
 
-                // 调整高亮层大小
                 const highlight = item.querySelector('.icon-highlight');
                 if (highlight) {
                     highlight.style.width = highlightWidth + 'px';
@@ -1626,16 +1545,14 @@
                 }
             });
 
-            // 保存当前大小到 localStorage
             localStorage.setItem('iconSize', size);
-            console.log('[DEBUG] 图标大小已切换为: ' + size);
+            console.log('[图标] 图标大小已切换为: ' + size);
         }
 
-        // ============ 加载保存的图标大小设置 ============
+        // ===== 加载保存的图标大小 =====
         (function loadIconSize() {
             const savedSize = localStorage.getItem('iconSize');
             if (savedSize && ['lg', 'md', 'sm'].includes(savedSize)) {
-                // 更新对应的 radio 按钮
                 const radio = document.getElementById('icon-size-' + savedSize);
                 if (radio) {
                     radio.checked = true;
@@ -1644,19 +1561,17 @@
             }
         })();
 
-        // ============ 显示网页窗口（支持指定位置） ============
+        // ===== 显示窗口（支持指定位置） =====
         function showWindowAtPosition(leftOffset, topOffset) {
             const windowEl = document.getElementById('mainWindow');
             const blurEl = document.getElementById('windowBlur');
             const titlebar = document.getElementById('titlebar');
             const taskbarTab = document.getElementById('taskbarTab');
 
-            // 重置display属性，允许重新显示
             windowEl.style.display = '';
             blurEl.style.display = '';
             titlebar.style.display = '';
 
-            // 先确保元素显示，但初始位置在屏幕外，防止闪烁
             windowEl.style.opacity = '0';
             blurEl.style.opacity = '0';
             titlebar.style.opacity = '0';
@@ -1664,42 +1579,33 @@
             windowEl.classList.add('show');
             blurEl.classList.add('show');
             titlebar.classList.add('show');
-            // 确保任务栏标签显示（重置所有样式并触发动画）
+
             taskbarTab.style.display = '';
             taskbarTab.style.opacity = '';
             taskbarTab.style.width = '';
-            taskbarTab.style.animation = '';  // 移除 animation: none，让动画重新执行
-            // 移除可能残留的类，重新添加 show 类触发动画
+            taskbarTab.style.animation = '';
             taskbarTab.classList.remove('show', 'closing');
-            // 强制回流
             void taskbarTab.offsetWidth;
             taskbarTab.classList.add('show');
 
-            // 强制激活窗口，移除inactive状态
             windowEl.classList.remove('inactive');
 
-            // 恢复模糊层模糊程度
             if (blurEl) {
                 blurEl.style.backdropFilter = 'blur(10px)';
                 blurEl.style.webkitBackdropFilter = 'blur(10px)';
             }
 
-            // 切换任务栏标签为激活状态
             const tabImage = document.getElementById('tabImage');
             if (tabImage) {
                 tabImage.src = 'img/任务xxdzDM_alpha1.png';
             }
 
-            // 将窗口置于顶层
             windowEl.style.zIndex = 9999 + windowCounter;
 
-            // 设置位置
             if (leftOffset !== undefined && topOffset !== undefined) {
                 const desktopRect = document.getElementById('desktop').getBoundingClientRect();
-                // 获取窗口当前尺寸
                 const windowWidth = 463;
                 const windowHeight = 213;
-                // 计算位置，确保不超出屏幕
                 let left = leftOffset;
                 let top = topOffset;
                 if (left + windowWidth > window.innerWidth) {
@@ -1715,7 +1621,6 @@
                 windowEl.style.top = top + 'px';
                 windowEl.style.marginLeft = '0px';
                 windowEl.style.marginTop = '0px';
-                // 模糊层跟随窗口
                 if (blurEl) {
                     blurEl.style.left = (left + 12) + 'px';
                     blurEl.style.top = (top + 11) + 'px';
@@ -1724,7 +1629,6 @@
                 }
             }
 
-            // 多次延迟同步模糊层位置，确保动画完成后位置正确
             setTimeout(function() {
                 syncBlurPosition();
                 windowEl.style.opacity = '';
@@ -1736,33 +1640,30 @@
             setTimeout(syncBlurPosition, 300);
 
             windowCounter++;
-            console.log('[DEBUG]  网页窗口已显示 (#', windowCounter, ')');
+            console.log('[窗口] 网页窗口已显示 (#' + windowCounter + ')');
 
-            // 播放音效 - 第一个窗口也播放
             try {
                 const audio = new Audio('img/7严重停止.wav');
                 audio.volume = 0.45;
-                audio.play().catch(e => console.log('[DEBUG] 音效播放失败:', e));
+                audio.play().catch(e => console.log('[屑] 音效播放失败:', e));
             } catch(e) {
-                console.log('[DEBUG] 音效加载失败:', e);
+                console.log('[屑] 音效加载失败:', e);
             }
         }
 
-        // ============ 显示网页窗口（原函数兼容） ============
+        // ===== 显示窗口（原函数） =====
         function showWindow() {
             showWindowAtPosition(undefined, undefined);
         }
 
-        // ============ 重置所有窗口状态（恢复主窗口） ============
+        // ===== 重置所有窗口，恢复主窗口 =====
         function resetAllWindows() {
-            console.log('[DEBUG] 🔄 开始重置所有窗口状态...');
+            console.log('[重置] 开始重置所有窗口状态...');
 
-            // 1. 移除所有克隆窗口（非主窗口）
             const allWindows = document.querySelectorAll('.window:not(#mainWindow)');
             const allBlurs = document.querySelectorAll('.window-blur:not(#windowBlur)');
             const allTabs = document.querySelectorAll('.taskbar-tab:not(#taskbarTab)');
 
-            // 移除克隆窗口
             allWindows.forEach(win => {
                 if (win.parentNode) win.parentNode.removeChild(win);
             });
@@ -1773,17 +1674,15 @@
                 if (tab.parentNode) tab.parentNode.removeChild(tab);
             });
 
-            // 2. 检查主窗口是否存在，如果不存在则重新创建
             let mainWindow = document.getElementById('mainWindow');
             let mainBlur = document.getElementById('windowBlur');
             let mainTitlebar = document.getElementById('titlebar');
             let mainTab = document.getElementById('taskbarTab');
 
             if (!mainWindow) {
-                console.log('[DEBUG] ⚠️ 主窗口不存在，重新创建...');
+                console.log('[重置] 主窗口不存在，重新创建...');
                 const desktop = document.getElementById('desktop');
 
-                // 重新创建模糊层
                 const newBlur = document.createElement('div');
                 newBlur.className = 'window-blur';
                 newBlur.id = 'windowBlur';
@@ -1791,7 +1690,6 @@
                 desktop.appendChild(newBlur);
                 mainBlur = newBlur;
 
-                // 重新创建主窗口
                 const newWindow = document.createElement('div');
                 newWindow.className = 'window';
                 newWindow.id = 'mainWindow';
@@ -1804,7 +1702,6 @@
                 mainWindow = newWindow;
                 mainTitlebar = document.getElementById('titlebar');
 
-                // 手动绑定关闭按钮事件（不使用克隆替换）
                 const closeBtn = document.getElementById('windowCloseBtn');
                 if (closeBtn) {
                     closeBtn.addEventListener('click', function(e) {
@@ -1813,13 +1710,12 @@
                     });
                 }
 
-                // 手动绑定标题栏拖动事件（不使用克隆替换）
                 const titlebarEl = document.getElementById('titlebar');
                 if (titlebarEl) {
                     titlebarEl.addEventListener('mousedown', function(e) {
                         const winEl = getWindowEl();
                         if (!winEl) return;
-                        console.log('[DEBUG] mousedown 标题栏');
+                        console.log('[拖拽] mousedown 标题栏');
                         e.preventDefault();
                         e.stopPropagation();
                         currentlyDraggingWindow = winEl;
@@ -1841,11 +1737,10 @@
                         winEl.style.cursor = 'grabbing';
                         document.addEventListener('mousemove', onDrag);
                         document.addEventListener('mouseup', stopDrag);
-                        console.log('[DEBUG] isDragging = true, edgeTriggered = false, 当前拖拽窗口: mainWindow');
+                        console.log('[拖拽] isDragging=true, 当前拖主窗口');
                     });
                 }
 
-                // 手动绑定窗口点击激活事件（不使用克隆替换）
                 const winElForClick = document.getElementById('mainWindow');
                 if (winElForClick) {
                     winElForClick.addEventListener('mousedown', function(e) {
@@ -1872,10 +1767,9 @@
                     });
                 }
 
-                console.log('[DEBUG] ✅ 主窗口已重新创建');
+                console.log('[重置] 主窗口已重新创建');
             }
 
-            // 重置主窗口位置到屏幕中央
             if (mainWindow) {
                 mainWindow.style.left = '';
                 mainWindow.style.top = '';
@@ -1889,7 +1783,6 @@
                 mainWindow.classList.remove('show', 'closing', 'inactive');
             }
 
-            // 重置主模糊层
             if (mainBlur) {
                 mainBlur.style.left = '';
                 mainBlur.style.top = '';
@@ -1904,7 +1797,6 @@
                 mainBlur.classList.remove('show', 'closing');
             }
 
-            // 重置主标题栏
             if (mainTitlebar) {
                 mainTitlebar.style.display = '';
                 mainTitlebar.style.opacity = '';
@@ -1912,7 +1804,6 @@
                 mainTitlebar.classList.remove('show', 'closing');
             }
 
-            // 重置主任务栏标签
             if (mainTab) {
                 mainTab.style.display = '';
                 mainTab.style.opacity = '';
@@ -1932,7 +1823,6 @@
                 void mainTab.offsetWidth;
             }
 
-            // 3. 重置全局状态变量
             isClosing = false;
             hasSpawned = false;
             edgeTriggered = false;
@@ -1941,7 +1831,6 @@
             windowCounter = 0;
             isWindowResetPending = false;
 
-            // 4. 取消所有物理动画
             if (window.windowPhysicsId) {
                 cancelAnimationFrame(window.windowPhysicsId);
                 window.windowPhysicsId = null;
@@ -1951,10 +1840,8 @@
                 windowDropTimers = [];
             }
 
-            // 5. 清除所有掉落方块
             clearDroppedBlocks();
 
-            // 6. 重置任务栏弹性状态
             const taskbarElement = document.querySelector('.taskbar');
             if (taskbarElement) {
                 taskbarElement.style.transition = '';
@@ -1966,57 +1853,46 @@
             }
             bounceActive = false;
 
-            // 7. 重排任务栏标签（清理残留）
             rearrangeTaskbarTabs();
 
-            console.log('[DEBUG] ✅ 所有窗口状态已重置，主窗口已恢复（隐藏状态，等待双击触发）');
+            console.log('[重置] 所有窗口已重置，主窗口已恢复（隐藏，等双击触发）');
         }
 
-        // ============ 批量生成窗口 ============
+        // ===== 批量生成窗口 =====
         function spawnMultipleWindows() {
-            // 获取当前窗口位置
             const windowEl = document.getElementById('mainWindow');
             const rect = windowEl.getBoundingClientRect();
             const desktopRect = document.getElementById('desktop').getBoundingClientRect();
 
-            // 直接从 getBoundingClientRect 获取实际位置
             let baseLeft = rect.left - desktopRect.left;
             let baseTop = rect.top - desktopRect.top;
 
-            // 如果窗口未显示或位置异常，使用默认位置（屏幕中央）
             if (baseLeft < 0 || baseTop < 0 || baseLeft > window.innerWidth || baseTop > window.innerHeight) {
                 baseLeft = (window.innerWidth - 463) / 2;
                 baseTop = (window.innerHeight - 213 - 48) / 2;
             }
 
-            console.log('[DEBUG] 📍 克隆窗口基准位置: left=' + baseLeft + ', top=' + baseTop);
+            console.log('[批量] 克隆窗口基准位置: left=' + baseLeft + ', top=' + baseTop);
 
-            // 生成10个窗口，位置依次向右下方偏移
             for (let i = 1; i <= 10; i++) {
                 const offsetX = 30 * i;
                 const offsetY = 30 * i;
 
-                // 使用setTimeout让每个窗口依次出现，有层次感
                 setTimeout(() => {
-                    // 克隆窗口元素（但不克隆任务栏标签）
                     const newWindowEl = windowEl.cloneNode(true);
                     const newBlurEl = document.getElementById('windowBlur').cloneNode(true);
 
-                    // 移除克隆窗口中的任务栏标签（防止主标签被克隆）
                     const clonedTaskbarTab = newWindowEl.querySelector('.taskbar-tab');
                     if (clonedTaskbarTab) {
                         clonedTaskbarTab.remove();
                     }
 
-                    // 为新窗口生成唯一ID
                     const windowId = 'window_' + Date.now() + '_' + i;
                     const blurId = 'blur_' + Date.now() + '_' + i;
 
-                    // 设置窗口位置
                     const left = baseLeft + offsetX;
                     const top = baseTop + offsetY;
 
-                    // 配置新窗口
                     newWindowEl.id = windowId;
                     newWindowEl.className = 'window show';
                     newWindowEl.style.position = 'absolute';
@@ -2030,16 +1906,14 @@
                     newWindowEl.style.zIndex = 9999 + windowCounter;
                     newWindowEl.dataset.windowIndex = windowCounter;
 
-                    // 播放音效
                     try {
                         const audio = new Audio('img/7严重停止.wav');
                         audio.volume = 0.45;
-                        audio.play().catch(e => console.log('[DEBUG] 音效播放失败:', e));
+                        audio.play().catch(e => console.log('[屑] 音效播放失败:', e));
                     } catch(e) {
-                        console.log('[DEBUG] 音效加载失败:', e);
+                        console.log('[屑] 音效加载失败:', e);
                     }
 
-                    // 配置模糊层
                     newBlurEl.id = blurId;
                     newBlurEl.className = 'window-blur show';
                     newBlurEl.style.position = 'absolute';
@@ -2052,7 +1926,6 @@
                     newBlurEl.style.pointerEvents = 'none';
                     newBlurEl.style.zIndex = 9998 + windowCounter;
 
-                    // 配置标题栏
                     const newTitlebar = newWindowEl.querySelector('.window-titlebar');
                     if (newTitlebar) {
                         newTitlebar.className = 'window-titlebar show';
@@ -2060,19 +1933,16 @@
                         newTitlebar.style.pointerEvents = 'auto';
                     }
 
-                    // 配置关闭按钮
                     const newCloseBtn = newWindowEl.querySelector('.window-close-btn');
                     if (newCloseBtn) {
                         newCloseBtn.style.opacity = '1';
                         newCloseBtn.style.pointerEvents = 'auto';
-                        // 为关闭按钮添加事件
                         newCloseBtn.addEventListener('click', function(e) {
                             e.stopPropagation();
                             closeSpecificWindow(newWindowEl, newBlurEl, taskbarTabNew);
                         });
                     }
 
-                    // 创建对应的任务栏标签（紧挨前一个标签）
                     const taskbarTabNew = document.createElement('div');
                     taskbarTabNew.className = 'taskbar-tab show';
                     taskbarTabNew.dataset.windowId = windowId;
@@ -2082,14 +1952,9 @@
                     taskbarTabNew.style.overflow = 'hidden';
                     taskbarTabNew.style.cursor = 'pointer';
 
-                    // 使用简单计数：从任务栏中间区域获取所有子元素中的标签数量
                     const taskbarMiddle = document.querySelector('.taskbar-middle');
-                    // 直接获取所有.taskbar-tab元素（包括主标签和新标签）
                     const allTabs = taskbarMiddle.querySelectorAll('.taskbar-tab');
-                    // 计算新标签应该放的位置：主标签占一个位置（left:3px），其他标签依次排列
-                    // 所以新标签的位置 = 3 + (所有标签数量 - 1) * 160
                     const tabCount = allTabs.length;
-                    // 第一个标签（主标签）在3px位置，后续每个标签递增160px
                     const leftPos = 3 + tabCount * 160;
                     taskbarTabNew.style.left = leftPos + 'px';
                     taskbarTabNew.style.animation = 'tabOpen 0.15s ease-out forwards';
@@ -2098,11 +1963,10 @@
                     tabImg.src = 'img/任务xxdzDM_alpha1.png';
                     tabImg.alt = '任务标签';
                     tabImg.style.height = '38px';
-                    tabImg.style.width = '100%';  // 改为100%，由父容器控制宽度
+                    tabImg.style.width = '100%';
                     tabImg.style.display = 'block';
                     taskbarTabNew.appendChild(tabImg);
 
-                    // 添加高光遮罩层
                     const glowMask = document.createElement('div');
                     glowMask.className = 'tab-glow-mask';
                     glowMask.style.position = 'absolute';
@@ -2118,15 +1982,12 @@
                     glowMask.style.mixBlendMode = 'overlay';
                     taskbarTabNew.appendChild(glowMask);
 
-                    // 鼠标移入时显示高光
                     taskbarTabNew.addEventListener('mouseenter', function() {
                         glowMask.style.opacity = '1';
                     });
                     taskbarTabNew.addEventListener('mouseleave', function() {
                         glowMask.style.opacity = '0';
                     });
-
-                    // 鼠标移动时高光跟随
                     taskbarTabNew.addEventListener('mousemove', function(e) {
                         const rect = taskbarTabNew.getBoundingClientRect();
                         const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -2134,29 +1995,22 @@
                         glowMask.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%)`;
                     });
 
-                    // 任务栏标签点击事件 - 激活对应窗口
                     taskbarTabNew.addEventListener('click', function() {
-                        // 激活窗口
                         activateWindow(newWindowEl, newBlurEl);
-                        // 置顶
                         windowCounter++;
                         newWindowEl.style.zIndex = 9999 + windowCounter;
                         if (newBlurEl) {
                             newBlurEl.style.zIndex = 9998 + windowCounter;
                         }
-                        // 更新所有标签状态
                         document.querySelectorAll('.taskbar-tab img').forEach(img => {
                             img.src = 'img/任务xxdzDM_alpha2.png';
                         });
                         tabImg.src = 'img/任务xxdzDM_alpha1.png';
                     });
 
-                    // 将新标签添加到任务栏中间区域
                     taskbarMiddle.appendChild(taskbarTabNew);
-                    // 重排所有任务栏标签
                     rearrangeTaskbarTabs();
 
-                    // 为标题栏添加拖动功能和置顶（包含边缘检测）
                     if (newTitlebar) {
                         const winEl = newWindowEl;
                         const blurElRef = newBlurEl;
@@ -2165,16 +2019,12 @@
                         let dragOffsetYLocal = 0;
                         let edgeTriggeredLocal = false;
 
-                        // 点击标题栏时置顶窗口
                         newTitlebar.addEventListener('mousedown', function(e) {
                             e.preventDefault();
                             e.stopPropagation();
-                            // 记录当前正在拖拽的窗口（克隆窗口）
                             currentlyDraggingWindow = winEl;
-                            // 激活此窗口（置顶）
                             activateWindow(winEl, blurElRef);
 
-                            // 提高z-index确保置顶
                             windowCounter++;
                             winEl.style.zIndex = 9999 + windowCounter;
                             if (blurElRef) {
@@ -2200,17 +2050,14 @@
                                     blurElRef.style.top = (y + 11) + 'px';
                                 }
 
-                                // ===== 检测窗口是否完全移出屏幕（独立判断，不受边缘触发影响） =====
                                 const winRect2 = winEl.getBoundingClientRect();
                                 const isFullyOut2 = (winRect2.right < 0 || winRect2.left > window.innerWidth ||
                                                      winRect2.bottom < 0 || winRect2.top > window.innerHeight);
 
-                                // ===== 场景2（优先）：窗口完全移出屏幕 → 销毁窗口 + 触发系统窗口 =====
                                 if (isFullyOut2 && !edgeTriggeredLocal) {
-                                    console.log('[DEBUG] 🟢 克隆窗口已完全移出屏幕！销毁该窗口及其模糊层');
+                                    console.log('[整活] 克隆窗口完全出屏！销毁该窗口及其模糊层');
                                     edgeTriggeredLocal = true;
 
-                                    // 立即获取模糊层和标签引用（在销毁前）
                                     const blurElRef = winEl.nextElementSibling;
                                     let tabEl = null;
                                     const tabs = document.querySelectorAll('.taskbar-tab');
@@ -2220,36 +2067,29 @@
                                         }
                                     });
 
-                                    // 立即停止拖拽（即使鼠标未抬起）
                                     if (winEl._stopDrag) {
                                         winEl._stopDrag();
                                     }
 
-                                    // 立即从DOM中移除克隆窗口
                                     if (winEl.parentNode) {
                                         winEl.parentNode.removeChild(winEl);
                                     }
-                                    // 立即从DOM中移除模糊层
                                     if (blurElRef && blurElRef.parentNode) {
                                         blurElRef.parentNode.removeChild(blurElRef);
                                     }
-                                    // 立即从DOM中移除标签
                                     if (tabEl && tabEl.parentNode) {
                                         tabEl.parentNode.removeChild(tabEl);
                                     }
-                                    console.log('[DEBUG] 🗑️ 克隆窗口及其模糊层已立即销毁');
+                                    console.log('[整活] 克隆窗口已销毁');
 
-                                    // 延迟触发其他窗口物理掉落
                                     setTimeout(() => {
-                                        console.log('[DEBUG] ⏰ 当前窗口已销毁，触发其他窗口掉落');
+                                        console.log('[物理] 当前窗口已销毁，触发其他窗口掉落');
                                         dropAllWindows();
                                     }, 300);
-                                    // 同时尝试通知后端（不影响物理效果）
                                     triggerSpawnWindow(ev.clientX, ev.clientY, 'edge');
-                                    return; // 销毁后不再执行后续边缘检测
+                                    return;
                                 }
 
-                                // ===== 场景1：鼠标进入边缘区域 → 仅触发系统窗口，不销毁（仅在未完全移出时生效） =====
                                 const EDGE_THRESHOLD = 50;
                                 const mouseX2 = ev.clientX;
                                 const mouseY2 = ev.clientY;
@@ -2259,11 +2099,9 @@
                                                         mouseY2 > window.innerHeight - EDGE_THRESHOLD);
 
                                 if (isMouseAtEdge2 && !edgeTriggeredLocal) {
-                                    console.log('[DEBUG] 🟡 鼠标进入边缘区域！触发系统窗口（不销毁当前克隆窗口）');
+                                    console.log('[整活] 鼠标进入边缘，触发系统窗口（不销毁当前克隆）');
                                     edgeTriggeredLocal = true;
-                                    // 仅触发后端创建系统窗口，不销毁当前窗口
                                     triggerSpawnWindow(ev.clientX, ev.clientY, 'edge');
-                                    // 重置 edgeTriggeredLocal，允许再次触发
                                     setTimeout(() => {
                                         edgeTriggeredLocal = false;
                                     }, 500);
@@ -2273,7 +2111,7 @@
                             function stopDragLocal() {
                                 isDraggingLocal = false;
                                 edgeTriggeredLocal = false;
-                                currentlyDraggingWindow = null; // 清除拖拽标记
+                                currentlyDraggingWindow = null;
                                 winEl.style.cursor = '';
                                 document.removeEventListener('mousemove', onDragLocal);
                                 document.removeEventListener('mouseup', stopDragLocal);
@@ -2283,13 +2121,10 @@
                             document.addEventListener('mouseup', stopDragLocal);
                         });
 
-                        // 点击窗口本身（非标题栏区域）也置顶
                         winEl.addEventListener('mousedown', function(e) {
-                            // 如果点击的是标题栏或关闭按钮，不重复处理
                             if (e.target.closest('.window-titlebar') || e.target.closest('.window-close-btn')) {
                                 return;
                             }
-                            // 激活此窗口（置顶）
                             activateWindow(winEl, blurElRef);
                             windowCounter++;
                             winEl.style.zIndex = 9999 + windowCounter;
@@ -2299,14 +2134,11 @@
                         });
                     }
 
-                    // 将新窗口添加到desktop
                     const desktop = document.getElementById('desktop');
                     desktop.appendChild(newBlurEl);
                     desktop.appendChild(newWindowEl);
 
-                    // 激活新窗口（聚焦）- 但先移除所有窗口的焦点状态
                     setTimeout(() => {
-                        // 让所有窗口失焦
                         document.querySelectorAll('.window').forEach(w => {
                             w.classList.add('inactive');
                         });
@@ -2314,37 +2146,30 @@
                             b.style.backdropFilter = 'blur(3px)';
                             b.style.webkitBackdropFilter = 'blur(3px)';
                         });
-                        // 只激活新窗口
                         activateWindow(newWindowEl, newBlurEl);
                     }, 50);
 
                     windowCounter++;
-                    console.log('[DEBUG]  批量窗口 #' + i + ' 已创建');
-                }, i * 100); // 每个窗口间隔100ms依次出现
+                    console.log('[批量] 窗口 #' + i + ' 已创建');
+                }, i * 100);
             }
 
-            // ===== 窗口掉落完成后会自动触发重置（由 dropAllWindows 触发） =====
-            // 不再需要定时器，由物理引擎完成时自动调用 resetAllWindows
-            console.log('[DEBUG] ⏱️ 窗口掉落完成后将自动重置');
+            console.log('[批量] 窗口掉落完成后将自动重置');
         }
 
-        // ============ 激活指定窗口 ============
+        // ===== 激活指定窗口 =====
         function activateWindow(windowEl, blurEl) {
-            // 所有窗口失焦（添加inactive类）
             document.querySelectorAll('.window').forEach(w => {
                 w.classList.add('inactive');
             });
-            // 所有模糊层降低模糊度
             document.querySelectorAll('.window-blur').forEach(b => {
                 b.style.backdropFilter = 'blur(3px)';
                 b.style.webkitBackdropFilter = 'blur(3px)';
             });
-            // 所有任务栏标签失焦
             document.querySelectorAll('.taskbar-tab img').forEach(img => {
                 img.src = 'img/任务xxdzDM_alpha2.png';
             });
 
-            // 激活当前窗口（移除inactive类）
             if (windowEl) {
                 windowEl.classList.remove('inactive');
                 windowEl.style.zIndex = 9999 + windowCounter;
@@ -2355,8 +2180,6 @@
                 blurEl.style.zIndex = 9998 + windowCounter;
             }
 
-            // 找到并激活对应的任务栏标签
-            // 对于主窗口，使用主标签
             const mainWindow = document.getElementById('mainWindow');
             if (windowEl === mainWindow) {
                 const tabImage = document.getElementById('tabImage');
@@ -2364,66 +2187,42 @@
                     tabImage.src = 'img/任务xxdzDM_alpha1.png';
                 }
             } else {
-                // 对于克隆窗口，找到对应的标签
-                const allTabs = document.querySelectorAll('.taskbar-tab');
-                // 遍历所有标签，找到与窗口关联的标签（通过窗口ID或数据关联）
-                // 简单方法：如果窗口有对应的标签，在创建时已绑定点击事件，这里只需要更新所有标签状态
-                // 但由于我们无法直接关联，我们遍历所有标签并检查它们的点击事件绑定的窗口
-                // 更简单的方法：让所有新标签自己管理自己的状态
-                // 这里我们只更新主标签，新标签的激活由各自的事件处理
+                // 克隆窗口的标签在各自的事件里处理
             }
-            // 但为了确保新标签也被激活，我们需要在创建标签时保存引用
-            // 由于新标签的点击事件已经调用了activateWindow并更新了主标签，
-            // 我们需要额外更新所有标签状态
-            // 简单修复：更新所有标签状态
             document.querySelectorAll('.taskbar-tab img').forEach(img => {
-                // 如果某个标签的父级是主标签，则跳过（主标签由上面处理）
                 const parent = img.closest('.taskbar-tab');
                 if (parent && parent.id === 'taskbarTab') {
-                    // 主标签已经在上面处理了
-                } else {
-                    // 新标签暂时设为失焦，由它们的点击事件处理
-                    // 但这里我们无法知道哪个标签对应哪个窗口
-                    // 所以我们只更新主标签，新标签由各自的事件处理
+                    // 主标签已在上面处理
                 }
             });
         }
 
-        // ============ 重排任务栏标签 ============
+        // ===== 重排任务栏标签 =====
         function rearrangeTaskbarTabs() {
             const allTabs = document.querySelectorAll('.taskbar-tab');
-            const tabs = document.querySelectorAll('.taskbar-tab:not(#taskbarTab)');
-
-            // 获取任务栏中间区域的宽度
             const taskbarMiddle = document.querySelector('.taskbar-middle');
             const middleWidth = taskbarMiddle ? taskbarMiddle.clientWidth : window.innerWidth - 80;
 
-            // 每个标签的默认宽度
             const defaultTabWidth = 160;
-            const startOffset = 3; // 第一个标签的起始位置
+            const startOffset = 3;
             const totalTabs = allTabs.length;
-
-            // 计算可用宽度（减去起始位置和标签之间的间隙）
             const gap = 2;
             const availableWidth = middleWidth - startOffset - (totalTabs > 0 ? (totalTabs - 1) * gap : 0);
 
-            // 计算每个标签的宽度：默认160px，但如果不够则缩小
             let tabWidth = defaultTabWidth;
             if (totalTabs > 0 && availableWidth / totalTabs < defaultTabWidth) {
                 tabWidth = Math.max(availableWidth / totalTabs, 60);
             }
             tabWidth = Math.floor(tabWidth);
 
-            console.log('[DEBUG] 📐 重排任务栏标签: 总数=' + totalTabs + ', 宽度=' + tabWidth + 'px');
+            console.log('[排版] 重排任务栏标签: 总数=' + totalTabs + ', 宽度=' + tabWidth + 'px');
 
-            // 先设置所有标签（包括主标签）的宽度和位置
             allTabs.forEach((tab, index) => {
                 const leftPos = startOffset + index * (tabWidth + gap);
                 tab.style.transition = 'left 0.2s ease-out, width 0.2s ease-out';
                 tab.style.left = leftPos + 'px';
                 tab.style.width = tabWidth + 'px';
 
-                // 标签内的图片也调整宽度
                 const img = tab.querySelector('img');
                 if (img) {
                     img.style.width = tabWidth + 'px';
@@ -2432,19 +2231,16 @@
             });
         }
 
-        // ============ 关闭指定窗口 ============
+        // ===== 关闭指定窗口 =====
         function closeSpecificWindow(windowEl, blurEl, taskbarTabEl) {
             if (!windowEl) return;
 
-            // 添加关闭动画
             windowEl.classList.add('closing');
             if (blurEl) {
                 blurEl.classList.add('closing');
             }
             if (taskbarTabEl) {
-                // 任务栏标签使用关闭动画（与主标签一致）
                 taskbarTabEl.classList.add('closing');
-                // 强制触发动画
                 taskbarTabEl.style.animation = 'none';
                 void taskbarTabEl.offsetWidth;
                 taskbarTabEl.style.animation = '';
@@ -2460,13 +2256,12 @@
                 if (taskbarTabEl && taskbarTabEl.parentNode) {
                     taskbarTabEl.parentNode.removeChild(taskbarTabEl);
                 }
-                // 重排剩余任务栏标签
                 rearrangeTaskbarTabs();
-                console.log('[DEBUG]  指定窗口已关闭');
+                console.log('[窗口] 指定窗口已关闭');
             }, 160);
         }
 
-        // ============ 关闭网页窗口 ============
+        // ===== 关闭主窗口 =====
         let isClosing = false;
 
         function closeWindow() {
@@ -2478,43 +2273,35 @@
             const titlebar = document.getElementById('titlebar');
             const taskbarTab = document.getElementById('taskbarTab');
 
-            // 添加关闭动画类
             windowEl.classList.add('closing');
             blurEl.classList.add('closing');
             titlebar.classList.add('closing');
-            // 任务栏标签使用单独的关闭动画
             taskbarTab.classList.add('closing');
 
-            // 动画结束后隐藏
             setTimeout(function() {
                 windowEl.classList.remove('show', 'closing');
                 blurEl.classList.remove('show', 'closing');
                 titlebar.classList.remove('show', 'closing');
                 taskbarTab.classList.remove('show', 'closing');
 
-                // 重置样式
                 windowEl.style.display = 'none';
                 blurEl.style.display = 'none';
                 titlebar.style.display = 'none';
-                // 不删除主任务栏标签，只隐藏
 
-                // 重置高光遮罩透明度
                 const tabGlowMask = document.getElementById('tabGlowMask');
                 if (tabGlowMask) {
                     tabGlowMask.style.opacity = '0';
                 }
 
-                // 重置hasSpawned，允许再次触发
                 hasSpawned = false;
                 isClosing = false;
 
-                // 重排任务栏标签（主标签不参与重排）
                 rearrangeTaskbarTabs();
 
-                console.log('[DEBUG]  网页窗口已关闭');
+                console.log('[窗口] 主窗口已关闭');
             }, 160);
         }
-        // ============ 关闭按钮事件 ============
+
         const closeBtn = document.getElementById('windowCloseBtn');
         if (closeBtn) {
             closeBtn.addEventListener('click', function(e) {
@@ -2523,16 +2310,16 @@
             });
         }
 
-        // ============ 物理引擎（支持窗口和方块掉落 + 任务栏弹性反馈） ============
+        // ===== 物理引擎，让窗口体验自由落体 =====
         const selection = document.getElementById('desktopSelection');
         let isSelecting = false;
         let selectStartX = 0;
         let selectStartY = 0;
         let droppedBlocks = [];
         let physicsFrameId = null;
-        const GRAVITY = 0.8;        // 增大重力，下落更快
-        const BOUNCE = 0.5;         // 增大弹力，弹得更高
-        const FRICTION = 0.95;      // 减少水平阻力
+        const GRAVITY = 0.8;
+        const BOUNCE = 0.5;
+        const FRICTION = 0.95;
         const TASKBAR_HEIGHT = 48;
         let taskbarBounceActive = false;
 
@@ -2541,19 +2328,16 @@
         }
         const taskbarEl = document.querySelector('.taskbar');
 
-        // 任务栏弹性反馈（每次撞击都触发，快速复位）
+        // 任务栏弹性反馈，每次撞击弹一下
         let taskbarBounceTimer = null;
         function triggerTaskbarBounce() {
             if (!taskbarEl) return;
-            // 清除之前的定时器，重新开始
             if (taskbarBounceTimer) {
                 clearTimeout(taskbarBounceTimer);
                 taskbarBounceTimer = null;
             }
-            // 立即下压
             taskbarEl.style.transition = 'transform 0.06s ease-out';
             taskbarEl.style.transform = 'translateY(10px)';
-            // 短暂延迟后弹回
             taskbarBounceTimer = setTimeout(() => {
                 taskbarEl.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 taskbarEl.style.transform = 'translateY(0px)';
@@ -2565,7 +2349,7 @@
             }, 60);
         }
 
-        // 创建桌面选区方块（保留原功能）
+        // 创建桌面选区方块
         function createDropBlock(left, top, width, height) {
             const block = document.createElement('div');
             block.className = 'drop-block';
@@ -2590,68 +2374,58 @@
             return block;
         }
 
-        // ============ 核心：让所有网页窗口物理掉落（重构版 - 使用 CSS 动画 + JS 控制） ============
-        // 全局变量：记录当前正在拖拽的窗口，排除它不掉落
+        // ===== 核心：让所有窗口物理掉落 =====
         let currentlyDraggingWindow = null;
         let windowDropAnimId = 0;
         let windowDropTimers = [];
 
         function dropAllWindows() {
-            // ===== 全新的基于 requestAnimationFrame 的物理掉落引擎 =====
             const allWindows = document.querySelectorAll('.window:not(.closing)');
             const allBlurs = document.querySelectorAll('.window-blur:not(.closing)');
             const allTabs = document.querySelectorAll('.taskbar-tab');
-            const floorY = window.innerHeight - TASKBAR_HEIGHT; // 任务栏顶部 Y 坐标
-            const GRAVITY = 0.8;          // 重力加速度（像素/帧²）- 增大让下落更快更明显
-            const BOUNCE = 0.78;          // 弹性系数（0~1）- 增大让弹跳更持久，衰减更慢
-            const FRICTION = 0.99;        // 水平摩擦
-            const VEL_THRESHOLD = 1.2;    // 速度阈值，低于此值触发“最后一弹”并穿透
+            const floorY = window.innerHeight - TASKBAR_HEIGHT;
+            const GRAVITY = 0.8;
+            const BOUNCE = 0.78;
+            const FRICTION = 0.99;
 
-            console.log('[DEBUG] 💥 触发所有窗口物理掉落！窗口数量:', allWindows.length);
+            console.log('[物理] 所有窗口开始掉落，数量：' + allWindows.length);
             if (currentlyDraggingWindow) {
-                console.log('[DEBUG] 🚫 排除正在拖拽的窗口:', currentlyDraggingWindow.id);
+                console.log('[物理] 排除正在拖拽的窗口:', currentlyDraggingWindow.id);
             }
 
             if (allWindows.length === 0) {
-                console.log('[DEBUG] ⚠️ 没有窗口可掉落');
+                console.log('[物理] 没有窗口可掉落');
                 return;
             }
 
-            // 取消之前的物理循环
             if (window.windowPhysicsId) {
                 cancelAnimationFrame(window.windowPhysicsId);
                 window.windowPhysicsId = null;
             }
-            // 清除旧定时器（如果有）
             if (windowDropTimers) {
                 windowDropTimers.forEach(t => clearTimeout(t));
                 windowDropTimers = [];
             }
 
-            // 构建物理体列表（排除正在拖拽的窗口）
             let bodies = [];
             allWindows.forEach((win, idx) => {
                 if (win === currentlyDraggingWindow) return;
                 if (win.style.display === 'none') return;
 
-                // 获取当前绝对位置（left/top 可能是 px 字符串或空）
                 let left = parseFloat(win.style.left);
                 let top = parseFloat(win.style.top);
-                // 若没有有效值，使用 getBoundingClientRect 计算相对桌面的位置
                 if (isNaN(left) || isNaN(top)) {
                     const rect = win.getBoundingClientRect();
                     const dRect = desktop.getBoundingClientRect();
                     left = rect.left - dRect.left;
                     top = rect.top - dRect.top;
                 }
-                // 防止初始位置过低（直接卡在任务栏上）
                 if (top + win.offsetHeight > floorY - 20) {
                     top = 30 + Math.random() * 120;
                 }
 
-                // 对应的模糊层和任务栏标签（按索引匹配）
                 const blur = allBlurs[idx] || null;
-                const tab = allTabs[idx] || null;   // 注意：allTabs 顺序与窗口一致（主窗口在主标签）
+                const tab = allTabs[idx] || null;
 
                 bodies.push({
                     win: win,
@@ -2663,40 +2437,36 @@
                     vy: 0,
                     width: win.offsetWidth || 463,
                     height: win.offsetHeight || 213,
-                    penetrating: false,   // 是否已穿透任务栏（不再反弹）
+                    penetrating: false,
                     removed: false,
-                    bounceCount: 0        // 弹跳计数器
+                    bounceCount: 0
                 });
             });
 
             if (bodies.length === 0) {
-                console.log('[DEBUG] ⚠️ 没有可掉落的窗口（全部被排除）');
+                console.log('[物理] 没有可掉落的窗口（全部被排除）');
                 return;
             }
 
-            // 任务栏弹性状态（防重复触发）
             let bounceActive = false;
             function triggerBounce() {
                 if (bounceActive) return;
                 bounceActive = true;
-                triggerTaskbarBounce();    // 调用已有的任务栏弹跳函数
+                triggerTaskbarBounce();
                 setTimeout(() => { bounceActive = false; }, 300);
             }
 
-            // 物理更新循环 - 固定 5 次弹跳，自然衰减
             function physicsLoop() {
                 let allRemoved = true;
 
                 bodies.forEach(body => {
                     if (body.removed) return;
 
-                    // 应用重力与摩擦
                     body.vy += GRAVITY;
                     body.vx *= FRICTION;
                     body.left += body.vx;
                     body.top += body.vy;
 
-                    // 左右边界碰撞
                     if (body.left < 0) {
                         body.left = 0;
                         body.vx = -body.vx * 0.5;
@@ -2705,28 +2475,20 @@
                         body.vx = -body.vx * 0.5;
                     }
 
-                    // 检测底部是否触及任务栏顶部
                     const bottom = body.top + body.height;
                     if (bottom >= floorY && !body.penetrating) {
-                        // 撞击任务栏
                         body.top = floorY - body.height;
 
                         if (body.bounceCount < 3) {
-                            // 前 3 次：正常反弹（自然衰减）
                             body.vy = -body.vy * BOUNCE;
                             body.bounceCount++;
                             if (!bounceActive) triggerBounce();
                         } else {
-                            // 第 3 次之后：直接穿透，不再反弹
                             body.penetrating = true;
-                            // 注意：不设置 vy，保持当前速度（可能是很小的向下速度）
-                            // 让重力自然加速，产生自由落体效果
-                            // 最后一次撞击触发任务栏弹跳
                             if (!bounceActive) triggerBounce();
                         }
                     }
 
-                    // 更新 DOM 位置
                     body.win.style.left = body.left + 'px';
                     body.win.style.top = body.top + 'px';
                     body.win.style.marginLeft = '0px';
@@ -2738,64 +2500,52 @@
                         body.blur.style.marginTop = '0px';
                     }
 
-                    // 判断是否完全掉出屏幕
                     if (body.top > window.innerHeight + 200) {
                         body.removed = true;
                         body.win.style.display = 'none';
                         if (body.blur) {
                             body.blur.style.display = 'none';
-                            // 从DOM中移除模糊层
                             if (body.blur.parentNode) {
                                 body.blur.parentNode.removeChild(body.blur);
                             }
                         }
-                        // 从DOM中移除窗口
                         if (body.win.parentNode) {
                             body.win.parentNode.removeChild(body.win);
                         }
-                        // 任务栏标签执行关闭动画并移除
                         if (body.tab && body.tab.parentNode) {
                             body.tab.classList.add('closing');
-                            // 动画结束后移除
                             setTimeout(() => {
                                 if (body.tab && body.tab.parentNode) {
                                     body.tab.parentNode.removeChild(body.tab);
-                                    // 重排剩余标签
                                     rearrangeTaskbarTabs();
                                 }
                             }, 160);
                         }
-                        console.log('[DEBUG] 🪟 窗口已掉落出屏幕，已销毁');
+                        console.log('[物理] 窗口已掉落出屏，已销毁');
                     } else {
                         allRemoved = false;
                     }
                 });
 
-                // 继续循环或结束
                 if (!allRemoved) {
                     window.windowPhysicsId = requestAnimationFrame(physicsLoop);
                 } else {
                     window.windowPhysicsId = null;
-                    console.log('[DEBUG] ✅ 所有窗口已掉落完毕');
-                    // ===== 窗口掉落完成后，自动重置所有窗口 =====
-                    console.log('[DEBUG] 🔄 窗口已全部掉落，自动触发重置...');
-                    // 延迟一点点让DOM更新完成
+                    console.log('[物理] 所有窗口已掉落完毕');
                     setTimeout(() => {
                         resetAllWindows();
                     }, 300);
                 }
             }
 
-            // 启动物理循环
             window.windowPhysicsId = requestAnimationFrame(physicsLoop);
         }
 
-        // 保留原有方块物理（用于桌面选区）- 添加方块间碰撞
+        // 方块物理，桌面选区用
         function updatePhysics() {
             const floorY = window.innerHeight - TASKBAR_HEIGHT;
             let moving = false;
 
-            // 先更新所有方块的位置和速度
             droppedBlocks.forEach(block => {
                 if (!block.isFalling) return;
                 block.velocityY += GRAVITY;
@@ -2805,7 +2555,6 @@
                 l += block.velocityX;
                 t += block.velocityY;
 
-                // 屏幕边界碰撞
                 if (l < 0) { l = 0; block.velocityX = -block.velocityX * BOUNCE; }
                 else if (l + block.origWidth > window.innerWidth) {
                     l = window.innerWidth - block.origWidth;
@@ -2831,15 +2580,14 @@
                 if (Math.abs(block.velocityX) > 0.1 || Math.abs(block.velocityY) > 0.1) moving = true;
             });
 
-            // 过滤掉已移除的方块
             droppedBlocks = droppedBlocks.filter(b => b.style.display !== 'none');
 
-            // ===== 方块间碰撞检测（简化版：弹性碰撞） =====
+            // 方块间碰撞
             for (let i = 0; i < droppedBlocks.length; i++) {
                 for (let j = i + 1; j < droppedBlocks.length; j++) {
                     const a = droppedBlocks[i];
                     const b = droppedBlocks[j];
-                    if (!a.isFalling && !b.isFalling) continue; // 两个都静止则跳过
+                    if (!a.isFalling && !b.isFalling) continue;
 
                     const ax = parseFloat(a.style.left);
                     const ay = parseFloat(a.style.top);
@@ -2850,15 +2598,11 @@
                     const bw = b.origWidth;
                     const bh = b.origHeight;
 
-                    // 检测是否重叠（AABB碰撞检测）
                     if (ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by) {
-                        // 计算重叠量
                         const overlapX = Math.min(ax + aw - bx, bx + bw - ax);
                         const overlapY = Math.min(ay + ah - by, by + bh - ay);
 
-                        // 选择重叠较小的方向进行分离（更自然的碰撞响应）
                         if (overlapX < overlapY) {
-                            // 水平方向分离
                             if (ax < bx) {
                                 a.style.left = (ax - overlapX / 2) + 'px';
                                 b.style.left = (bx + overlapX / 2) + 'px';
@@ -2866,18 +2610,15 @@
                                 a.style.left = (ax + overlapX / 2) + 'px';
                                 b.style.left = (bx - overlapX / 2) + 'px';
                             }
-                            // 交换水平速度（弹性碰撞）
                             const tempVx = a.velocityX;
                             a.velocityX = b.velocityX * 0.8;
                             b.velocityX = tempVx * 0.8;
-                            // 如果两个都静止，给一个微小速度让它们分开
                             if (Math.abs(a.velocityX) < 0.1 && Math.abs(b.velocityX) < 0.1) {
                                 a.velocityX = (ax < bx ? -0.5 : 0.5);
                                 b.velocityX = (ax < bx ? 0.5 : -0.5);
                             }
                             moving = true;
                         } else {
-                            // 垂直方向分离
                             if (ay < by) {
                                 a.style.top = (ay - overlapY / 2) + 'px';
                                 b.style.top = (by + overlapY / 2) + 'px';
@@ -2885,7 +2626,6 @@
                                 a.style.top = (ay + overlapY / 2) + 'px';
                                 b.style.top = (by - overlapY / 2) + 'px';
                             }
-                            // 交换垂直速度（弹性碰撞）
                             const tempVy = a.velocityY;
                             a.velocityY = b.velocityY * 0.8;
                             b.velocityY = tempVy * 0.8;
@@ -2899,7 +2639,6 @@
                 }
             }
 
-            // 继续或结束物理循环
             if (moving && droppedBlocks.length > 0) {
                 physicsFrameId = requestAnimationFrame(updatePhysics);
             } else {
@@ -2917,9 +2656,8 @@
             physicsFrameId = requestAnimationFrame(updatePhysics);
         }
 
-        // 鼠标按下时开始选择
+        // 鼠标按下开始选区
         desktop.addEventListener('mousedown', (e) => {
-            // 只对桌面背景生效
             if (e.target === desktop || e.target === selection) {
                 if (e.button === 0) {
                     isSelecting = true;
@@ -2934,7 +2672,6 @@
             }
         });
 
-        // 鼠标移动时更新选择框
         document.addEventListener('mousemove', (e) => {
             if (!isSelecting) return;
 
@@ -2952,21 +2689,17 @@
             selection.style.height = height + 'px';
         });
 
-        // 鼠标松开时结束选择并创建掉落方块
         document.addEventListener('mouseup', (e) => {
             if (isSelecting) {
                 isSelecting = false;
 
-                // 获取选择框的最终尺寸
                 const left = parseFloat(selection.style.left);
                 const top = parseFloat(selection.style.top);
                 const width = parseFloat(selection.style.width);
                 const height = parseFloat(selection.style.height);
 
-                // 如果选择区域足够大（至少10px），创建掉落方块
                 if (width > 10 && height > 10) {
                     createDropBlock(left, top, width, height);
-                    // 启动物理模拟
                     setTimeout(startPhysics, 50);
                 }
 
@@ -2976,7 +2709,7 @@
             }
         });
 
-        // ============ 清空所有掉落方块（刷新功能） ============
+        // ===== 清空所有掉落方块 =====
         function clearDroppedBlocks() {
             droppedBlocks.forEach(block => {
                 if (block.parentNode) {
@@ -2988,85 +2721,70 @@
                 cancelAnimationFrame(physicsFrameId);
                 physicsFrameId = null;
             }
-            console.log('[DEBUG] 已清空所有掉落方块');
+            console.log('[清理] 已清空所有掉落方块');
         }
 
-        // ============ 右键菜单 ============
+        // ===== 右键菜单 =====
         const contextMenu = document.getElementById('contextMenu');
-        // 直接使用全局的 desktop 变量，不重复声明
 
         desktop.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             const x = e.clientX;
             const y = e.clientY;
 
-            // 先显示菜单以获取实际尺寸
             contextMenu.classList.add('visible');
 
-            // 获取菜单实际尺寸
             const menuWidth = contextMenu.offsetWidth || 220;
             const menuHeight = contextMenu.offsetHeight || 400;
 
             let left = x;
             let top = y;
 
-            // 确保菜单不超出屏幕右边界
             if (left + menuWidth > window.innerWidth) {
                 left = window.innerWidth - menuWidth - 5;
             }
-            // 确保菜单不超出屏幕左边界
             if (left < 5) {
                 left = 5;
             }
-            // 确保菜单不超出屏幕下边界
             if (top + menuHeight > window.innerHeight) {
                 top = window.innerHeight - menuHeight - 5;
             }
-            // 确保菜单不超出屏幕上边界
             if (top < 5) {
                 top = 5;
             }
 
-            // 隐藏菜单重新定位
             contextMenu.classList.remove('visible');
             contextMenu.style.left = left + 'px';
             contextMenu.style.top = top + 'px';
 
-            // 强制回流后显示
             void contextMenu.offsetWidth;
             contextMenu.classList.add('visible');
         });
 
-        // 点击其他地方关闭菜单
         document.addEventListener('click', (e) => {
             if (!contextMenu.contains(e.target)) {
                 contextMenu.classList.remove('visible');
             }
         });
 
-        // 右键菜单项点击
         document.querySelectorAll('.context-menu-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
-                // 如果是刷新菜单项，执行刷新
                 if (item.id === 'refreshMenuItem') {
                     refreshDesktopIcons();
-                    clearDroppedBlocks(); // 清空掉落的方块
+                    clearDroppedBlocks();
                     contextMenu.classList.remove('visible');
                 }
-                // 如果是 has-submenu 项（有子菜单），不关闭菜单
                 else if (item.classList.contains('has-submenu')) {
-                    // 不关闭菜单，让子菜单保持展开
                     return;
                 }
-                // 其他菜单项点击后关闭菜单
                 else {
                     contextMenu.classList.remove('visible');
                 }
             });
         });
 
-        // ============ 二级菜单延迟展开 ============
+        // ===== 二级菜单延迟展开 =====
         let submenuTimer = null;
         let currentSubmenu = null;
 
@@ -3074,19 +2792,16 @@
             const submenu = item.querySelector('.context-submenu');
 
             item.addEventListener('mouseenter', () => {
-                // 清除之前的定时器
                 if (submenuTimer) {
                     clearTimeout(submenuTimer);
                     submenuTimer = null;
                 }
-                // 隐藏其他子菜单
                 document.querySelectorAll('.context-submenu').forEach(sm => {
                     if (sm !== submenu) {
                         sm.style.opacity = '0';
                         sm.style.pointerEvents = 'none';
                     }
                 });
-                // 延迟显示当前子菜单
                 submenuTimer = setTimeout(() => {
                     submenu.style.opacity = '1';
                     submenu.style.pointerEvents = 'auto';
@@ -3096,14 +2811,11 @@
             });
 
             item.addEventListener('mouseleave', () => {
-                // 清除定时器
                 if (submenuTimer) {
                     clearTimeout(submenuTimer);
                     submenuTimer = null;
                 }
-                // 延迟隐藏子菜单（给用户移动到子菜单的时间）
                 setTimeout(() => {
-                    // 检查鼠标是否在子菜单上
                     const isHoveringSubmenu = submenu.matches(':hover') || submenu.contains(document.activeElement);
                     if (!isHoveringSubmenu) {
                         submenu.style.opacity = '0';
@@ -3116,7 +2828,6 @@
             });
         });
 
-        // 子菜单悬停时保持显示
         document.querySelectorAll('.context-submenu').forEach(submenu => {
             submenu.addEventListener('mouseenter', () => {
                 if (submenuTimer) {
@@ -3139,21 +2850,17 @@
             });
         });
 
-        // 阻止子菜单点击冒泡，并防止关闭父菜单
         document.querySelectorAll('.context-submenu').forEach(submenu => {
             submenu.addEventListener('click', (e) => {
                 e.stopPropagation();
-                // 子菜单项点击不关闭父菜单
-                // 但如果点击的是子菜单中的选项，可以执行相应操作
                 const target = e.target.closest('.context-menu-item');
                 if (target && !target.classList.contains('has-submenu')) {
-                    // 子菜单项点击后不关闭父菜单（保持菜单打开）
-                    // 但可以在这里添加子菜单项的功能
+                    // 子菜单项点击不关闭父菜单
                 }
             });
         });
 
-        // ============ 开始菜单功能 ============
+        // ===== 开始菜单 =====
         const startBtn = document.querySelector('.start-btn');
         const startMenu = document.getElementById('startMenu');
         const spriteDefault = document.querySelector('.start-btn-sprite-default');
@@ -3161,9 +2868,7 @@
         const spriteActive = document.querySelector('.start-btn-sprite-active');
         let menuOpen = false;
 
-        // 点击精灵图切换菜单（只绑定到精灵图，而不是整个按钮）
         function bindSpriteClick() {
-            // 移除所有精灵图上的旧监听器（用新监听器替换）
             [spriteDefault, spriteHover, spriteActive].forEach(sprite => {
                 if (sprite) {
                     const newSprite = sprite.cloneNode(true);
@@ -3171,7 +2876,6 @@
                 }
             });
 
-            // 重新获取引用
             const newDefault = document.querySelector('.start-btn-sprite-default');
             const newHover = document.querySelector('.start-btn-sprite-hover');
             const newActive = document.querySelector('.start-btn-sprite-active');
@@ -3179,7 +2883,6 @@
             [newDefault, newHover, newActive].forEach(sprite => {
                 if (sprite) {
                     sprite.style.pointerEvents = 'auto';
-                    // 移除 cursor 设置，让 CSS 控制光标样式
                     sprite.addEventListener('click', function(e) {
                         e.stopPropagation();
                         toggleMenu();
@@ -3193,21 +2896,18 @@
             menuOpen = !menuOpen;
             if (menuOpen) {
                 startMenu.style.display = 'block';
-                // 强制回流后添加 open 类触发动画
                 void startMenu.offsetWidth;
                 startMenu.classList.add('open');
                 startBtn.classList.add('menu-open');
             } else {
                 startMenu.classList.remove('open');
                 startBtn.classList.remove('menu-open');
-                // 等待动画结束后隐藏
                 setTimeout(() => {
                     startMenu.style.display = 'none';
                 }, 160);
             }
         }
 
-        // 点击菜单外部关闭菜单
         document.addEventListener('click', function(e) {
             if (menuOpen && !startMenu.contains(e.target) && !startBtn.contains(e.target) &&
                 !e.target.closest('.start-btn-sprite')) {
@@ -3215,30 +2915,26 @@
             }
         });
 
-        // 防止菜单内部点击冒泡导致关闭
         startMenu.addEventListener('click', function(e) {
             e.stopPropagation();
         });
 
-        // ============ 拖出窗口到系统（触发物理掉落） ============
+        // ===== 拖出窗口到系统 =====
         let hasSpawned = false;
 
         function triggerSpawnWindow(x, y, source) {
-            console.log('[DEBUG] triggerSpawnWindow 被调用, 来源:', source, 'hasSpawned:', hasSpawned);
-            // 如果已经触发过，不再重复
+            console.log('[整活] triggerSpawnWindow 被调用, 来源:', source, 'hasSpawned:', hasSpawned);
             if (hasSpawned) {
-                console.log('[DEBUG]  已触发过，不再重复');
+                console.log('[整活] 已触发过，不再重复');
                 return;
             }
-            // 只有 edge（拖出边缘）才触发系统窗口
             if (source !== 'edge') {
-                console.log('[DEBUG]  非边缘拖出触发，忽略 (来源:', source + ')');
+                console.log('[整活] 非边缘拖出触发，忽略 (来源:' + source + ')');
                 return;
             }
             hasSpawned = true;
-            console.log('[DEBUG]  触发拖出窗口 (来源: ' + source + ')');
+            console.log('[整活] 触发拖出窗口 (来源: ' + source + ')');
 
-            // 通知后端
             fetch('http://127.0.0.1:5000/api/spawn_window', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3246,14 +2942,13 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log('[DEBUG]  系统窗口创建成功:', data);
+                console.log('[整活] 系统窗口创建成功:', data);
             })
             .catch(err => {
-                console.error('[DEBUG]  创建系统窗口失败:', err);
+                console.error('[屑] 创建系统窗口失败:', err);
                 hasSpawned = false;
             });
         }
-
     </script>
 </body>
 </html>
