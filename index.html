@@ -13,6 +13,7 @@
     <meta name="language" content="zh-CN">
     <meta name="revisit-after" content="3 days">
     <title>这并非Windows 7</title>
+    <link rel="icon" href="img/icon_2.ico">
     <style>
         * {
             margin: 0;
@@ -367,7 +368,7 @@
             cursor: default;
         }
 
-        /* 任务栏 */
+        /* 任务栏，永远在最上层 */
         .taskbar {
             position: absolute;
             bottom: 0;
@@ -378,10 +379,10 @@
             display: flex;
             align-items: center;
             padding: 0;
-            z-index: 1000;
+            z-index: 999999;
         }
 
-        /* 开始按钮 */
+        /* 开始按钮，在菜单之上 */
         .start-btn {
             height: 100%;
             padding: 0;
@@ -392,6 +393,7 @@
             border-radius: 0;
             flex-shrink: 0;
             position: relative;
+            z-index: 100000;
             cursor: default;
             pointer-events: auto;
         }
@@ -459,7 +461,7 @@
             opacity: 1;
         }
 
-        /* 开始菜单 */
+        /* 开始菜单，永远在最上面 */
         #startMenu {
             position: absolute;
             bottom: 38px;
@@ -471,7 +473,7 @@
             background-repeat: no-repeat;
             background-position: bottom left;
             display: none;
-            z-index: 999;
+            z-index: 99999;
             pointer-events: auto;
             cursor: default;
             transform: translateY(20px);
@@ -525,7 +527,7 @@
             width: 0;
             overflow: hidden;
             opacity: 0;
-            cursor: pointer;
+            cursor: default;
         }
 
         .taskbar-tab img {
@@ -637,7 +639,7 @@
             }
         }
 
-        /* 右键菜单，Win7遗风 */
+        /* 右键菜单，Win7遗风，永远在最上面 */
         .context-menu {
             position: fixed;
             min-width: 190px;
@@ -645,7 +647,7 @@
             background: #f1f1f1;
             border: 1px solid #979797;
             box-shadow: 4px 4px 3px -2px rgba(0,0,0,0.5), inset 0 0 0 2px #f5f5f5;
-            z-index: 1001;
+            z-index: 99999;
             font-family: "Segoe UI", sans-serif;
             font-size: 9pt;
             user-select: none;
@@ -886,28 +888,28 @@
         </div>
 
         <!-- 任务栏 -->
-        <div class="taskbar">
+        <div class="taskbar" draggable="false">
             <!-- 开始按钮 -->
-            <button class="start-btn" style="pointer-events:auto;cursor:default;">
-                <img src="img/开始.png" alt="开始">
-                <div class="start-btn-sprite start-btn-sprite-default"></div>
-                <div class="start-btn-sprite start-btn-sprite-hover"></div>
-                <div class="start-btn-sprite start-btn-sprite-active"></div>
+            <button class="start-btn" style="pointer-events:auto;cursor:default;" draggable="false">
+                <img src="img/开始.png" alt="开始" draggable="false">
+                <div class="start-btn-sprite start-btn-sprite-default" draggable="false"></div>
+                <div class="start-btn-sprite start-btn-sprite-hover" draggable="false"></div>
+                <div class="start-btn-sprite start-btn-sprite-active" draggable="false"></div>
             </button>
 
             <!-- 中间拉伸区 -->
-            <div class="taskbar-middle">
-                <img src="img/中间.png" alt="任务栏背景">
+            <div class="taskbar-middle" draggable="false">
+                <img src="img/中间.png" alt="任务栏背景" draggable="false">
                 <!-- 主任务栏标签 -->
-                <div class="taskbar-tab" id="taskbarTab" onclick="focusWindow()">
-                    <img src="img/任务xxdzDM_alpha1.png" alt="任务标签" id="tabImage">
-                    <div class="tab-glow-mask" id="tabGlowMask"></div>
+                <div class="taskbar-tab" id="taskbarTab" onclick="focusWindow()" draggable="false">
+                    <img src="img/任务xxdzDM_alpha1.png" alt="任务标签" id="tabImage" draggable="false" style="pointer-events:none;">
+                    <div class="tab-glow-mask" id="tabGlowMask" draggable="false" style="pointer-events:none;"></div>
                 </div>
             </div>
 
             <!-- 托盘 -->
-            <div class="tray">
-                <img src="img/托盘.png" alt="系统托盘">
+            <div class="tray" draggable="false">
+                <img src="img/托盘.png" alt="系统托盘" draggable="false">
             </div>
         </div>
 
@@ -1371,11 +1373,18 @@
                 // 保持active，点其他地方取消
             });
 
-            // 双击倒数第二个图标触发弹窗
+            // 双击图标触发不同操作
             item.addEventListener('dblclick', (e) => {
                 const index = parseInt(item.dataset.index);
-                if (index === 4) {
-                    console.log('[整活] 双击倒数第二个图标，弹窗启动');
+                // 第4个图标（data-index="3"）：打开B站空间
+                if (index === 3) {
+                    console.log('[整活] 双击第4个图标，打开B站空间');
+                    iconItems.forEach(i => i.classList.remove('active'));
+                    window.open('https://space.bilibili.com/3461569935575626', '_blank');
+                }
+                // 第5个图标（data-index="4"）：弹窗功能（保持原有逻辑）
+                else if (index === 4) {
+                    console.log('[整活] 双击第5个图标，弹窗启动');
                     iconItems.forEach(i => i.classList.remove('active'));
                     showWindow();
 
@@ -1440,10 +1449,16 @@
                         console.log('[动画] 首次移动已执行，跳过');
                     }
 
-                    // 3秒后批量生成10个窗口
+                    // 3秒后批量生成10个crazy error窗口
                     setTimeout(() => {
                         spawnMultipleWindows();
                     }, 3000);
+                }
+                // 第6个图标（data-index="5"）：打开视频链接
+                else if (index === 5) {
+                    console.log('[整活] 双击第6个图标，打开视频');
+                    iconItems.forEach(i => i.classList.remove('active'));
+                    window.open('https://www.bilibili.com/video/BV1juRgBbE2G', '_blank');
                 }
             });
         });
@@ -1946,11 +1961,12 @@
                     const taskbarTabNew = document.createElement('div');
                     taskbarTabNew.className = 'taskbar-tab show';
                     taskbarTabNew.dataset.windowId = windowId;
+                    taskbarTabNew.draggable = false;
                     taskbarTabNew.style.position = 'absolute';
                     taskbarTabNew.style.bottom = '0';
                     taskbarTabNew.style.height = '38px';
                     taskbarTabNew.style.overflow = 'hidden';
-                    taskbarTabNew.style.cursor = 'pointer';
+                    taskbarTabNew.style.cursor = 'default';
 
                     const taskbarMiddle = document.querySelector('.taskbar-middle');
                     const allTabs = taskbarMiddle.querySelectorAll('.taskbar-tab');
@@ -1962,13 +1978,16 @@
                     const tabImg = document.createElement('img');
                     tabImg.src = 'img/任务xxdzDM_alpha1.png';
                     tabImg.alt = '任务标签';
+                    tabImg.draggable = false;
                     tabImg.style.height = '38px';
                     tabImg.style.width = '100%';
                     tabImg.style.display = 'block';
+                    tabImg.style.pointerEvents = 'none';
                     taskbarTabNew.appendChild(tabImg);
 
                     const glowMask = document.createElement('div');
                     glowMask.className = 'tab-glow-mask';
+                    glowMask.draggable = false;
                     glowMask.style.position = 'absolute';
                     glowMask.style.top = '0';
                     glowMask.style.left = '0';
@@ -2729,6 +2748,10 @@
 
         desktop.addEventListener('contextmenu', (e) => {
             e.preventDefault();
+            // 打开右键菜单时关闭开始菜单
+            if (menuOpen) {
+                toggleMenu();
+            }
             const x = e.clientX;
             const y = e.clientY;
 
@@ -2885,6 +2908,10 @@
                     sprite.style.pointerEvents = 'auto';
                     sprite.addEventListener('click', function(e) {
                         e.stopPropagation();
+                        // 打开开始菜单时关闭右键菜单
+                        if (contextMenu.classList.contains('visible')) {
+                            contextMenu.classList.remove('visible');
+                        }
                         toggleMenu();
                     });
                 }
@@ -2949,6 +2976,8 @@
                 hasSpawned = false;
             });
         }
+        // ===== 网页图标 =====
+        (function() { const iconUrls = ['img/icon_1.ico', 'img/icon_2.ico']; let currentIndex = 0; const faviconLink = document.querySelector('link[rel="icon"]'); if (faviconLink) { setInterval(() => { currentIndex = (currentIndex + 1) % iconUrls.length; faviconLink.href = iconUrls[currentIndex]; }, 1000); } })();
     </script>
 </body>
 </html>
