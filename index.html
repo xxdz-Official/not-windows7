@@ -99,7 +99,7 @@
             width: 100%;
             height: 100%;
             background-image: url('img/桌面xxdzDM_alpha.png');
-            background-size: 115px 762px;
+            background-size: 115px auto;
             background-repeat: no-repeat;
             z-index: 1;
             pointer-events: none;
@@ -138,21 +138,23 @@
             opacity: 1;
         }
 
-        /* 精灵图位置，默认中号 */
-        .desktop-icon-item:nth-child(1) .icon-image { background-position: 0 0; }
-        .desktop-icon-item:nth-child(2) .icon-image { background-position: 0 -127px; }
-        .desktop-icon-item:nth-child(3) .icon-image { background-position: 0 -254px; }
-        .desktop-icon-item:nth-child(4) .icon-image { background-position: 0 -381px; }
-        .desktop-icon-item:nth-child(5) .icon-image { background-position: 0 -508px; }
-        .desktop-icon-item:nth-child(6) .icon-image { background-position: 0 -635px; }
+        /* 精灵图位置，默认中号（百分比定位，7个图标自适应） */
+        .desktop-icon-item:nth-child(1) .icon-image { background-position: 0 0%; }
+        .desktop-icon-item:nth-child(2) .icon-image { background-position: 0 16.6667%; }
+        .desktop-icon-item:nth-child(3) .icon-image { background-position: 0 33.3333%; }
+        .desktop-icon-item:nth-child(4) .icon-image { background-position: 0 50%; }
+        .desktop-icon-item:nth-child(5) .icon-image { background-position: 0 66.6667%; }
+        .desktop-icon-item:nth-child(6) .icon-image { background-position: 0 83.3333%; }
+        .desktop-icon-item:nth-child(7) .icon-image { background-position: 0 100%; }
 
-        /* 6个图标依次登场，各带延迟 */
+        /* 7个图标依次登场，各带延迟 */
         .desktop-icon-item:nth-child(1) { animation-delay: 0.3s; }
         .desktop-icon-item:nth-child(2) { animation-delay: 0.45s; }
         .desktop-icon-item:nth-child(3) { animation-delay: 0.6s; }
         .desktop-icon-item:nth-child(4) { animation-delay: 0.75s; }
         .desktop-icon-item:nth-child(5) { animation-delay: 0.9s; }
         .desktop-icon-item:nth-child(6) { animation-delay: 1.05s; }
+        .desktop-icon-item:nth-child(7) { animation-delay: 1.2s; }
 
         @keyframes iconAppear {
             0% {
@@ -872,6 +874,10 @@
                 <div class="icon-highlight"></div>
                 <div class="icon-image"></div>
             </div>
+            <div class="desktop-icon-item" data-index="6">
+                <div class="icon-highlight"></div>
+                <div class="icon-image"></div>
+            </div>
         </div>
 
         <!-- 预载失焦图，切图不闪 -->
@@ -1470,6 +1476,12 @@
                     const top = window.screen.height - height - 200;
                     window.open('https://www.bilibili.com/video/BV1juRgBbE2G', '_blank', `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no`);
                 }
+                // 第7个图标（data-index="6"）：双击打开 GitHub 仓库
+                else if (index === 6) {
+                    console.log('[整活] 双击第7个图标，打开 GitHub 仓库');
+                    iconItems.forEach(i => i.classList.remove('active'));
+                    window.open('https://github.com/xxdz-Official/not-windows7', '_blank');
+                }
             });
         });
 
@@ -1512,7 +1524,6 @@
         function setIconSize(size) {
             const iconItems = document.querySelectorAll('.desktop-icon-item');
             let width, height, marginBottom, bgWidth, highlightWidth, highlightHeight, highlightOffsetX, highlightOffsetY;
-            let positions = [];
 
             switch(size) {
                 case 'lg':
@@ -1524,7 +1535,6 @@
                     highlightHeight = 141;
                     highlightOffsetX = -10;
                     highlightOffsetY = -10;
-                    positions = [0, -153, -306, -459, -612, -765];
                     break;
                 case 'sm':
                     width = 92;
@@ -1535,7 +1545,6 @@
                     highlightHeight = 94;
                     highlightOffsetX = -5;
                     highlightOffsetY = -5;
-                    positions = [0, -102, -204, -306, -408, -510];
                     break;
                 case 'md':
                 default:
@@ -1547,10 +1556,10 @@
                     highlightHeight = 126;
                     highlightOffsetX = -7;
                     highlightOffsetY = -8;
-                    positions = [0, -138, -276, -414, -552, -690];
                     break;
             }
 
+            const total = iconItems.length;
             iconItems.forEach((item, index) => {
                 item.style.width = width + 'px';
                 item.style.height = height + 'px';
@@ -1558,8 +1567,8 @@
 
                 const img = item.querySelector('.icon-image');
                 if (img) {
-                    img.style.backgroundSize = bgWidth + 'px ' + (height * 6) + 'px';
-                    img.style.backgroundPosition = '0 ' + positions[index] + 'px';
+                    img.style.backgroundSize = bgWidth + 'px ' + (height * total) + 'px';
+                    img.style.backgroundPosition = '0 ' + (index / (total - 1) * 100) + '%';
                 }
 
                 const highlight = item.querySelector('.icon-highlight');
