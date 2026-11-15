@@ -1,6 +1,10 @@
 # not-windows7
 这并非Windows7，但它可以...跳出你的浏览器(?) 无技术力纯整活....
 
+###哔哩Toy已上架本网页，欢迎访问喵！
+
+https://www.bilibili.com/toy/not-windows7
+
 建议下载本地端以获得“从网页飞入电脑”的效果~
 （需要python环境）
 
