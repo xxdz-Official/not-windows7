@@ -74,8 +74,11 @@
             position: absolute;
             left: 0px;
             top: 0px;
+            width: 100%;
+            height: 100%;
             cursor: default;
             z-index: 1;
+            pointer-events: none;
         }
 
         /* 单个图标项 */
@@ -85,10 +88,13 @@
             margin-bottom: -42px;
             opacity: 0;
             animation: iconAppear 0.15s ease-out forwards;
-            position: relative;
+            position: absolute;
+            left: 0;
+            top: 0;
             cursor: default;
             z-index: 1;
-            transition: width 0.15s ease-out, height 0.15s ease-out, margin-bottom 0.15s ease-out;
+            pointer-events: auto;
+            transition: width 0.15s ease-out, height 0.15s ease-out, margin-bottom 0.15s ease-out, left 0.2s ease-out, top 0.2s ease-out;
         }
 
         /* 精灵图本体 */
@@ -1229,12 +1235,13 @@
         const BACKEND_URL = 'http://127.0.0.1:5000/api/message';
         let lastMessage = '你好后端';
 
-        // ===== 监听窗口尺寸变化，重排任务栏标签 =====
+        // ===== 监听窗口尺寸变化，重排任务栏标签和桌面图标 =====
         window.addEventListener('resize', function() {
             clearTimeout(window._resizeTimer);
             window._resizeTimer = setTimeout(function() {
                 rearrangeTaskbarTabs();
-                console.log('[排版] 窗口尺寸变了，任务栏标签已重排');
+                layoutDesktopIcons();
+                console.log('[排版] 窗口尺寸变了，任务栏标签与图标已重排');
             }, 100);
         });
 
@@ -1520,6 +1527,44 @@
         // ===== 首次移动标记 =====
         let firstMoveDone = false;
 
+        // ===== 桌面图标响应式布局（屏幕太矮自动换列，像 Windows 一样） =====
+        function layoutDesktopIcons() {
+            const container = document.querySelector('.desktop-icon');
+            if (!container) return;
+            const iconItems = container.querySelectorAll('.desktop-icon-item');
+            if (iconItems.length === 0) return;
+
+            const firstItem = iconItems[0];
+            const itemWidth = parseFloat(firstItem.style.width) || 115;
+            const itemHeight = parseFloat(firstItem.style.height) || 127;
+            const itemMarginBottom = parseFloat(firstItem.style.marginBottom);
+            const marginValue = isNaN(itemMarginBottom) ? -42 : itemMarginBottom;
+            const itemStepY = itemHeight + marginValue;
+            if (itemStepY <= 0) return;
+
+            const desktopEl = document.getElementById('desktop');
+            const desktopHeight = desktopEl ? desktopEl.clientHeight : window.innerHeight;
+            const taskbarEl = document.querySelector('.taskbar');
+            const taskbarHeight = taskbarEl ? taskbarEl.clientHeight : 48;
+            const bottomPadding = 10;
+            const availableHeight = desktopHeight - taskbarHeight - bottomPadding;
+
+            const rowsPerColumn = Math.max(1, Math.floor(availableHeight / itemStepY));
+
+            // 列间距压缩系数：1 = 原始图标宽度间距，越小两列越靠近
+            const COLUMN_GAP_FACTOR = 0.62;
+            const columnStep = itemWidth * COLUMN_GAP_FACTOR;
+
+            iconItems.forEach((item, index) => {
+                const col = Math.floor(index / rowsPerColumn);
+                const row = index % rowsPerColumn;
+                item.style.left = (col * columnStep) + 'px';
+                item.style.top = (row * itemStepY) + 'px';
+            });
+
+            console.log('[图标布局] 每列 ' + rowsPerColumn + ' 个, 共 ' + iconItems.length + ' 个图标, 列数 ' + Math.ceil(iconItems.length / rowsPerColumn));
+        }
+
         // ===== 设置图标大小 =====
         function setIconSize(size) {
             const iconItems = document.querySelectorAll('.desktop-icon-item');
@@ -1581,6 +1626,7 @@
 
             localStorage.setItem('iconSize', size);
             console.log('[图标] 图标大小已切换为: ' + size);
+            layoutDesktopIcons();
         }
 
         // ===== 加载保存的图标大小 =====
@@ -1592,6 +1638,8 @@
                     radio.checked = true;
                 }
                 setIconSize(savedSize);
+            } else {
+                layoutDesktopIcons();
             }
         })();
 
